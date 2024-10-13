@@ -140,17 +140,21 @@ AnHien.addEventListener("click", function() {
 //xoa-chu-input
 const resettkButton = document.querySelector(".reset");
 
-resettkButton.addEventListener("click", function() {
+resettkButton.addEventListener("click", function(event) {
+  event.preventDefault(); // Ngăn hành vi mặc định
   const inputrsElementtk = document.querySelector(".search input");
   inputrsElementtk.value = "";
 });
 
+
 const resettkButton2 = document.querySelector(".reset2");
 
-resettkButton2.addEventListener("click", function() {
-  const inputrsElementtk2 = document.querySelector("#form-quet #input-quet");
+resettkButton2.addEventListener("click", function(event) {
+  event.preventDefault(); // Ngăn hành vi mặc định  const inputrsElementtk2 = document.querySelector("#form-quet #input-quet");
+      const inputrsElementtk2 = document.querySelector(".search2 input");
   inputrsElementtk2.value = "";
 });
+
 
 
 //chu-chay
