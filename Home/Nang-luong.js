@@ -46,11 +46,12 @@ document.addEventListener('keydown', function(event) {
     });
 
     // Xử lý sự kiện cho màn hình cảm ứng
-    document.addEventListener('touchmove', (event) => {
-        event.preventDefault();
-        const touch = event.touches[0];
-        createTrail(touch.pageX, touch.pageY);
-    }, { passive: false });
+ document.addEventListener('touchmove', (event) => {
+    const touch = event.touches[0];
+    // Tạo hiệu ứng trail mà không ngăn cuộn
+    createTrail(touch.pageX, touch.pageY);
+});
+
 
 
 
