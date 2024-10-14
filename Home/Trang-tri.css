@@ -1,3 +1,12 @@
+    .trail {
+            position: absolute;
+            background-image: url('../image/fairy.webp');
+            background-size: cover;
+            z-index: 10;
+            pointer-events: none;
+            animation: mouse-fly 1.5s ease-out forwards; /* Áp dụng animation bay lên */
+        }
+
 .an {display: none;
   background-color: white;
    background-size: 100% 100%;
