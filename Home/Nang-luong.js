@@ -10,6 +10,50 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+//hieu-ung-click
+    const trailElements = [];
+    const maxTrail = 60; // số lượng tối đa các phần tử trail
+
+    function createTrail(x, y) {
+        const trail = document.createElement('div');
+        trail.classList.add('trail');
+
+        // Căn chỉnh vị trí và kích thước của phần tử trail
+        trail.style.width = `${50 - (trailElements.length * -0.1)}px`; // Giảm kích thước phần đuôi
+        trail.style.height = `${50 - (trailElements.length * -0.1)}px`; // Giảm kích thước phần đuôi
+        trail.style.left = `${x - (50 - (trailElements.length * 0.5)) / 2}px`; // Căn giữa theo con trỏ
+        trail.style.top = `${y - (50 - (trailElements.length * 0.5)) / 2}px`;
+
+        document.body.appendChild(trail);
+        trailElements.push(trail);
+
+        // Xóa phần tử trail sau khi hoạt ảnh kết thúc
+        setTimeout(() => {
+            trail.remove();
+            trailElements.shift(); // loại bỏ phần tử cũ khỏi mảng
+        }, 1500);
+
+        // Giới hạn số lượng trail
+        if (trailElements.length > maxTrail) {
+            trailElements[0].remove();
+            trailElements.shift();
+        }
+    }
+
+    // Xử lý sự kiện cho chuột
+    document.addEventListener('mousemove', (event) => {
+        createTrail(event.pageX, event.pageY);
+    });
+
+    // Xử lý sự kiện cho màn hình cảm ứng
+    document.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        const touch = event.touches[0];
+        createTrail(touch.pageX, touch.pageY);
+    }, { passive: false });
+
+
+
 
 
 //toan-man-hinh
