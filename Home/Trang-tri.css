@@ -1,5 +1,5 @@
     .trail {
-            position: absolute;
+            position: fixed;
             background-image: url('../image/fairy.webp');
             background-size: cover;
             z-index: 10;
