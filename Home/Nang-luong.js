@@ -58,15 +58,22 @@ document.addEventListener('keydown', function(event) {
 
 
 //toan-man-hinh
-const fullScreenButton = document.getElementById('thu-phong');
+const fullScreenButton1 = document.getElementById('thu-phong');
+const fullScreenButton2 = document.getElementById("dongy"); // Thêm nút thứ hai
 
-fullScreenButton.addEventListener('click', () => {
+// Hàm để chuyển đổi giữa chế độ toàn màn hình và chế độ bình thường
+const toggleFullScreen = () => {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
     document.documentElement.requestFullscreen();
   }
-});
+};
+
+// Gán sự kiện click cho cả hai nút
+fullScreenButton1.addEventListener('click', toggleFullScreen);
+fullScreenButton2.addEventListener('click', toggleFullScreen);
+
 
 
 
