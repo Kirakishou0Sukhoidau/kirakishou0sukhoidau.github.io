@@ -310,8 +310,9 @@ h1, span, p {pointer-events: none;}
       background-color: rgba(230, 230, 250, 0.5);
     border: 1px solid black;
         font-family: Arial;
-   width: max-content;
+   width: 100%;
  }
+
   .h11 {color: rgb(0,0,0);
      background-color: rgba(230, 230, 250, 0.5);
     width: max-content;
