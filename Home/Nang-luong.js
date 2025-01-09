@@ -809,6 +809,10 @@ for (const video of videosssi) {
           case "checkscam":
           url = "https://scam.vn/check-website?domain=" + query;
           break;
+          case "scamadviser":
+          url = https://www.scamadviser.com/check-website/" + query;
+          break;
+
 
       }
   window.open(url, '_blank');
