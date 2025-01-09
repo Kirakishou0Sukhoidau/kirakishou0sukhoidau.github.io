@@ -810,7 +810,7 @@ for (const video of videosssi) {
           url = "https://scam.vn/check-website?domain=" + query;
           break;
           case "scamadviser":
-          url = https://www.scamadviser.com/check-website/" + query;
+          url = "https://www.scamadviser.com/check-website/" + query;
           break;
 
 
