@@ -812,7 +812,11 @@ for (const video of videosssi) {
           case "scamadviser":
           url = "https://www.scamadviser.com/check-website/" + query;
           break;
+          case "urlscanio":
+          url = "https://urlscan.io/domain/" + query;
+          break;
 
+    
 
       }
   window.open(url, '_blank');
