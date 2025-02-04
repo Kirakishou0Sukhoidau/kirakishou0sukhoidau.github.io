@@ -610,6 +610,23 @@ input:after:first-child {
 .pul-bq {color: black;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+#khu-xem-anh {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 cột */
+    grid-template-rows: repeat(5, auto);  /* 5 hàng */
+    gap: 10px; /* Khoảng cách giữa các ảnh */
+}
+
+#khu-xem-anh img {
+    width: 100%; /* Làm cho ảnh tự động vừa với ô chứa */
+    max-width: 100%; /* Giới hạn chiều rộng ảnh */
+    height: auto; /* Giữ tỷ lệ chiều cao của ảnh */
+}
+
+#select-page {
+    width: 3.125em;
+}
  
   .ul-bq {background-image: url('../image/fairy1.webp');
     background-repeat: no repeat;
