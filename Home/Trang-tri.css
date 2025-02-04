@@ -38,8 +38,6 @@ header {z-index: +10;}
 }
 
 
-
-
 #thccth {display: flex;
   flex-direction: column;
 }
@@ -294,14 +292,11 @@ body.modal-open {
 /* Keyframes cho hiệu ứng delay */
 
 
-
 /* Áp dụng hiệu ứng delay */
 
 .chu-chay span {
   animation: delay-cycle 5s infinite ease-in-out;
 }
-
-
 
 
 h1, span, p {pointer-events: none;}
@@ -360,9 +355,6 @@ h1, span, p {pointer-events: none;}
    color: white;
    
  }
-
-
-  
 
 
       #reset {position: top right;}
@@ -431,7 +423,6 @@ input:after:first-child {
        }
  
 
-
    
     #reset {color: blueviolet;
             background: lavender;
@@ -461,8 +452,7 @@ input:after:first-child {
     border: 1px solid black;
     transition: all 0.3s ease-in-out;
         }
-  
-   
+
 
 
 #tools {
@@ -552,7 +542,6 @@ input:after:first-child {
 }
 
 
- 
 
   .mui-ten-xuong {
     text-align: center;
@@ -608,6 +597,19 @@ input:after:first-child {
 
 .pul-bq {color: black;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.video-preview {
+    border: 2px solid blue; /* Viền xanh cho video hoặc ảnh động */
+    cursor: pointer;
+}
+.ai-preview {
+    border: 2px solid gold; /* Viền vàng cho ảnh AI */
+    cursor: pointer;
+}
+.img-preview {
+    border: 2px solid pink; /* Viền hồng cho ảnh bình thường */
+    cursor: pointer;
 }
 
 #khu-xem-anh {
