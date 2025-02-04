@@ -1,57 +1,78 @@
 let currentPage = parseInt(localStorage.getItem("currentPage")) || 0; // Lấy từ localStorage hoặc mặc định 0
-
 function layAnh() {
     const khuXemAnh = document.getElementById("khu-xem-anh");
     const tag = document.getElementById("tag-input").value.trim();
     const apiUrl = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=25&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`;
 
+    console.log("Fetching:", apiUrl); // Kiểm tra URL API
+
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            khuXemAnh.innerHTML = ""; // Xóa nội dung cũ
-            document.getElementById("select-page").value = currentPage; // Cập nhật input số trang
+            console.log("API Response:", data); // Kiểm tra dữ liệu trả về
 
-            if (!data || data.length === 0) {
+            // Tạo DocumentFragment để giảm số lần thao tác DOM
+            const fragment = document.createDocumentFragment();
+            document.getElementById("select-page").value = currentPage;
+
+            if (!data || !Array.isArray(data) || data.length === 0) {
                 khuXemAnh.innerHTML = "<p>Không tìm thấy ảnh!</p>";
                 return;
             }
 
             data.forEach(post => {
+                if (!post.file_url) return;
+
                 let mediaContainer = document.createElement("div");
                 mediaContainer.classList.add("media-item");
 
-                if (post.file_url.endsWith(".mp4")) {
-                    // Nếu là video, hiển thị ảnh preview
-                    let previewImg = document.createElement("img");
-                    previewImg.src = post.preview_url;
-                    previewImg.alt = "Video Preview";
-                    previewImg.classList.add("video-preview");
+                let imgElement = document.createElement("img");
+                imgElement.alt = "Hình ảnh";
+                imgElement.classList.add("image-preview");
+                imgElement.dataset.src = post.preview_url || post.sample_url; // Sử dụng lazy load
+                imgElement.style.opacity = "0"; // Ẩn trước khi load
 
-                    previewImg.addEventListener("click", () => {
-                        window.open(post.file_url, "_blank"); // Mở video trong tab mới
-                    });
+                imgElement.addEventListener("click", () => {
+                    window.open(post.file_url, "_blank");
+                });
 
-                    mediaContainer.appendChild(previewImg);
-                } else {
-                    // Nếu là ảnh, hiển thị preview trước
-                    let imgElement = document.createElement("img");
-                    imgElement.src = post.preview_url || post.sample_url; // Hiện ảnh thu nhỏ
-                    imgElement.alt = "Hình ảnh";
-                    imgElement.classList.add("image-preview");
+                imgElement.onerror = () => imgElement.style.display = "none";
 
-                    imgElement.addEventListener("click", () => {
-                        window.open(post.file_url, "_blank"); // Mở ảnh gốc
-                    });
-
-                    imgElement.onerror = () => imgElement.style.display = "none";
-                    mediaContainer.appendChild(imgElement);
-                }
-
-                khuXemAnh.appendChild(mediaContainer);
+                mediaContainer.appendChild(imgElement);
+                fragment.appendChild(mediaContainer);
             });
+
+            // Xóa ảnh cũ và thêm ảnh mới vào một lần duy nhất
+            khuXemAnh.innerHTML = "";
+            khuXemAnh.appendChild(fragment);
+
+            // Kích hoạt lazy load
+            lazyLoadImages();
         })
-        .catch(error => console.error("Lỗi tải ảnh/video:", error));
+        .catch(error => {
+            console.error("Lỗi tải ảnh/video:", error);
+            khuXemAnh.innerHTML = "<p>Lỗi khi tải ảnh!</p>";
+        });
 }
+
+// **Lazy load hình ảnh**
+function lazyLoadImages() {
+    const images = document.querySelectorAll(".image-preview");
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                let img = entry.target;
+                img.src = img.dataset.src;
+                img.style.opacity = "1"; // Hiện ảnh khi load xong
+                obs.unobserve(img);
+            }
+        });
+    }, { rootMargin: "100px" });
+
+    images.forEach(img => observer.observe(img));
+}
+
+
 
 // Cập nhật localStorage khi đổi trang
 function capNhatTrangMoi(pid) {
