@@ -282,11 +282,8 @@ setTimeout(() => {
 
 
 
-
-
-
 //bang thong bao
-    alert ("Xin chào tiểu thư Kirakishou")
+//    alert ("Xin chào tiểu thư Kirakishou")
 /* var thongbao = document.getElementById("thongbao");
         var backdrop = document.getElementById("backdrop");
         var dongy = document.getElementById("dongy");
