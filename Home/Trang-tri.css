@@ -221,6 +221,10 @@ body {background-color: black;
       z-index: +10;
     }
 
+body.modal-open {
+    overflow: hidden;
+}
+
  
   h1 {color: rgb(0,0,0);
    /* margin-top: 7%;*/
@@ -296,8 +300,6 @@ body {background-color: black;
 .chu-chay span {
   animation: delay-cycle 5s infinite ease-in-out;
 }
-
-
 
 
 
@@ -571,6 +573,21 @@ input:after:first-child {
   text-align: center;}
 
 
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2; /* Thấp hơn menu nhưng cao hơn trang */
+    display: none;
+}
+
+/* Chặn cuộn */
+.no-scroll {
+    overflow: hidden;
+}
 
   .mui-ten-len {
    background-image: url("../image/fairy2.webp");
