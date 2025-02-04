@@ -1,4 +1,5 @@
 let currentPage = parseInt(localStorage.getItem("currentPage")) || 0; // Lấy từ localStorage hoặc mặc định 0
+
 function layAnh() {
     const khuXemAnh = document.getElementById("khu-xem-anh");
     const tag = document.getElementById("tag-input").value.trim();
@@ -20,27 +21,38 @@ function layAnh() {
                 return;
             }
 
-            data.forEach(post => {
-                if (!post.file_url) return;
+data.forEach(post => {
+    if (!post.file_url) return;
 
-                let mediaContainer = document.createElement("div");
-                mediaContainer.classList.add("media-item");
+    let mediaContainer = document.createElement("div");
+    mediaContainer.classList.add("media-item");
 
-                let imgElement = document.createElement("img");
-                imgElement.alt = "Hình ảnh";
-                imgElement.classList.add("image-preview");
-                imgElement.dataset.src = post.preview_url || post.sample_url; // Sử dụng lazy load
-                imgElement.style.opacity = "0"; // Ẩn trước khi load
+    let imgElement = document.createElement("img");
+    imgElement.alt = "Hình ảnh";
+    imgElement.classList.add("image-preview");
+    imgElement.dataset.src = post.preview_url || post.sample_url;
+    imgElement.style.opacity = "0"; 
 
-                imgElement.addEventListener("click", () => {
-                    window.open(post.file_url, "_blank");
-                });
+    // **Xác định class dựa trên tags**
+    let tags = post.tags.toLowerCase();
+    if (tags.includes("video") || tags.includes("animated")) {
+        imgElement.classList.add("video-preview"); // Viền xanh
+    } else if (tags.includes("ai_generated")) {
+        imgElement.classList.add("ai-preview"); // Viền vàng
+    } else {
+        imgElement.classList.add("img-preview"); // Viền hồng
+    }
 
-                imgElement.onerror = () => imgElement.style.display = "none";
+    imgElement.addEventListener("click", () => {
+        window.open(post.file_url, "_blank");
+    });
 
-                mediaContainer.appendChild(imgElement);
-                fragment.appendChild(mediaContainer);
-            });
+    imgElement.onerror = () => imgElement.style.display = "none";
+
+    mediaContainer.appendChild(imgElement);
+    fragment.appendChild(mediaContainer);
+});
+
 
             // Xóa ảnh cũ và thêm ảnh mới vào một lần duy nhất
             khuXemAnh.innerHTML = "";
@@ -71,7 +83,6 @@ function lazyLoadImages() {
 
     images.forEach(img => observer.observe(img));
 }
-
 
 
 // Cập nhật localStorage khi đổi trang
@@ -108,22 +119,12 @@ document.getElementById("skip-pages").addEventListener("click", function () {
 layAnh();
 
 // CSS để căn chỉnh ảnh và video preview
-const style = document.createElement("style");
+/*const style = document.createElement("style");
 style.innerHTML = `
-    .media-item {
-        display: inline-block;
-        margin: 5px;
-    }
-    .video-preview {
-        border: 2px solid blue; /* Để dễ nhận diện video */
-        cursor: pointer;
-    }
-    .image-preview {
-        border: 2px solid pink;
-        cursor: pointer;
-    }
+ 
 `;
 document.head.appendChild(style);
+*/
 
 function timAnhMoi() {
     currentPage = 0; // Reset về trang đầu
@@ -140,8 +141,6 @@ document.getElementById("tag-input").addEventListener("keydown", function(event)
 });
 
 
-
-
 document.getElementById("select-page").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault(); // Ngăn tải lại trang
@@ -154,6 +153,7 @@ document.getElementById("select-page").addEventListener("keydown", function(even
         }
     }
 });
+
 
 
 //xoa-input-ngan-phu
