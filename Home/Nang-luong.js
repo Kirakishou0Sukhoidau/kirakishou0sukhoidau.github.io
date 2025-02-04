@@ -286,8 +286,8 @@ setTimeout(() => {
 
 
 //bang thong bao
-  /*  alert ("Xin chào tiểu thư Kirakishou") */
- var thongbao = document.getElementById("thongbao");
+    alert ("Xin chào tiểu thư Kirakishou")
+/* var thongbao = document.getElementById("thongbao");
         var backdrop = document.getElementById("backdrop");
         var dongy = document.getElementById("dongy");
         var khongdongy = document.getElementById("khongdongy");
@@ -315,8 +315,36 @@ setTimeout(() => {
         } else {
             backdrop.style.display = "block"; // Hiển thị lớp nền mờ
         };
+*/
 
+var thongbao = document.getElementById("thongbao");
+var backdrop = document.getElementById("backdrop");
+var dongy = document.getElementById("dongy");
+var khongdongy = document.getElementById("khongdongy");
 
+dongy.onclick = function () {
+    var expires = new Date();
+    expires.setFullYear(2026); // Gia hạn đến năm 2026
+    document.cookie = "dongy=true; expires=" + expires.toUTCString() + "; path=/";
+    
+    thongbao.style.display = "none";
+    backdrop.style.display = "none";
+    document.body.classList.remove("modal-open"); // Bỏ chặn cuộn
+};
+
+khongdongy.onclick = function () {
+    document.write("Hỏi chấm?????");
+};
+
+// Kiểm tra cookie
+var cookieDongy = document.cookie.split('; ').find(row => row.startsWith('dongy='));
+if (cookieDongy) {
+    thongbao.style.display = "none";
+    backdrop.style.display = "none";
+} else {
+    backdrop.style.display = "block";
+    document.body.classList.add("modal-open"); // Chặn cuộn khi modal hiển thị
+};
 
 
 
@@ -595,8 +623,34 @@ setInterval(() => {
 }, ); // Thay đổi giá trị trong bằng thời gian kiểm tra mong muốn (tính bằng mili giây)
 
 
+//Ngan-phu
+const ulBq = document.querySelector('.ul-bq');
+const muiTenLen = document.querySelector('.mui-ten-len');
+const modalBg = document.querySelector('.modal-bg');
+
+muiTenLen.addEventListener('click', () => {
+    ulBq.classList.toggle('hidden');
+
+    if (!ulBq.classList.contains('hidden')) {
+        modalBg.style.display = 'block'; // Hiện modal background
+        document.body.classList.add('no-scroll'); // Chặn cuộn trang chính
+    } else {
+        modalBg.style.display = 'none'; // Ẩn modal background
+        document.body.classList.remove('no-scroll'); // Cho phép cuộn lại
+    }
+});
+
+// Ẩn menu khi bấm vào modal background
+modalBg.addEventListener('click', () => {
+    ulBq.classList.add('hidden');
+    modalBg.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+});
 
 
+
+
+/*
 const ulBq = document.querySelector('.ul-bq');
 const muiTenLen = document.querySelector('.mui-ten-len');
 
@@ -617,7 +671,7 @@ thembordermtl.addEventListener('click', function() {
     hasBorder = true;
   }
 });
-
+*/
 
 
 
