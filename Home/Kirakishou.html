@@ -440,15 +440,36 @@
 
         
   <div class="mui-ten-len"> </div>
-        
+    
+              <div class="modal-bg"></div>
+    
       <div class="ul-bq hidden">
-        
         
         
         <!--div id="hien-bg" style="background-color: black;"-->
           
          <div class="p-bq">
-        <h6 style="text-align: center; font-weight: bold; font-size: 1.2rem;">Thông tin trang web</h6>
+
+           <form>          
+             <input type="text" id="tag-input" placeholder="Nhập tag...">
+<button type="button" onclick="timAnhMoi()">Tìm ảnh</button>
+           </form>
+<div id="khu-xem-anh"></div>
+
+    <div id="khu-xem-anh">
+        <!-- Hình ảnh từ API sẽ hiển thị ở đây -->
+    </div>
+    
+    <div style="display:flex;">
+    <button type="button" id="previous">previous</button>
+    <button type="button" id="nexts">next</button>
+    <form>
+    <input id="select-page">
+    <button type="button" id="skip-pages">Tới</button>
+    </form>
+    </div>
+           
+        <!--h6 style="text-align: center; font-weight: bold; font-size: 1.2rem;">Thông tin trang web</h6>
  <p style="text-align: center; color: red;"> [Đang trong quá trình phát triển] </p>
         <p class="pul-bq"><b>Mục đích:</b></p>
 
@@ -458,7 +479,7 @@
 
         <p class="pul-bq">Mọi file, media, code trên trang web này có bản quyền thuộc về người tạo ra chúng. Việc sử dụng nội dung trên trang web này cần được sự đồng ý của người tạo ra chúng.</p>
         <p class="pul-bq"><b>Lưu ý:</b></p>
-        <p class="pul-bq">Một số công cụ sẽ tìm kiếm sẽ nhận "_" thay vì " ". Ví dụ: Nó sẽ nhận "Chào_buổi_sáng" thay vì "Chào buổi sáng".</p>
+        <p class="pul-bq">Một số công cụ sẽ tìm kiếm sẽ nhận "_" thay vì " ". Ví dụ: Nó sẽ nhận "Chào_buổi_sáng" thay vì "Chào buổi sáng".</p-->
                 </div>
         
 
@@ -539,7 +560,8 @@
   <div style="z-index: 1;" class="an-hien">Kirakishou</div>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+<script src="Ngan-phu-2.js"></script>
+<script src="Ngon-ngu.js"></script>
      <script src="Nang-luong.js"></script>
 </body>
 </html>
