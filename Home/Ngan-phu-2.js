@@ -134,3 +134,24 @@ document.getElementById("select-page").addEventListener("keydown", function(even
     }
 });
 
+
+//xoa-input-ngan-phu
+const resettkButtonnp = document.querySelector(".resetnp");
+
+resettkButtonnp.addEventListener("click", function(event) {
+  event.preventDefault(); // Ngăn hành vi mặc định  const inputrsElementtk2 = document.querySelector("#form-quet #input-quet");
+      const inputrsElementtknp = document.querySelector("#tag-input");
+  inputrsElementtknp.value = "";
+});
+
+
+const resettkButtonnp2 = document.querySelector(".resetnp2");
+
+resettkButtonnp2.addEventListener("click", function(event) {
+  event.preventDefault(); // Ngăn hành vi mặc định  const inputrsElementtk2 = document.querySelector("#form-quet #input-quet");
+      const inputrsElementtknp2 = document.querySelector("#select-page");
+  inputrsElementtknp2.value = "";
+});
+
+
+
