@@ -22,6 +22,7 @@ function layAnh() {
             }
 
 data.forEach(post => {
+data.forEach(post => {
     if (!post.file_url) return;
 
     let mediaContainer = document.createElement("div");
@@ -33,6 +34,9 @@ data.forEach(post => {
     imgElement.dataset.src = post.preview_url || post.sample_url;
     imgElement.style.opacity = "0"; 
 
+    // **Thêm title để hiện tooltip khi giữ vào ảnh**
+    imgElement.title = post.tags; 
+
     // **Xác định class dựa trên tags**
     let tags = post.tags.toLowerCase();
     if (tags.includes("video") || tags.includes("animated")) {
@@ -40,7 +44,7 @@ data.forEach(post => {
     } else if (tags.includes("ai_generated")) {
         imgElement.classList.add("ai-preview"); // Viền vàng
     } else {
-        imgElement.classList.add("img-preview"); // Viền hồng
+        imgElement.classList.add("default-preview"); // Viền hồng
     }
 
     imgElement.addEventListener("click", () => {
@@ -52,6 +56,7 @@ data.forEach(post => {
     mediaContainer.appendChild(imgElement);
     fragment.appendChild(mediaContainer);
 });
+
 
 
             // Xóa ảnh cũ và thêm ảnh mới vào một lần duy nhất
