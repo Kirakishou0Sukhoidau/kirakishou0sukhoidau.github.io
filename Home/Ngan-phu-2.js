@@ -37,12 +37,16 @@ data.forEach(post => {
     // **Thêm title để hiện tooltip khi giữ vào ảnh**
     imgElement.title = post.tags; 
 
-    // **Xác định class dựa trên tags**
+    // **Kiểm tra tags và định dạng file**
     let tags = post.tags.toLowerCase();
-    if (tags.includes("video") || tags.includes("animated")) {
+    let fileType = post.file_url.split('.').pop().toLowerCase(); // Lấy phần đuôi file
+
+    if ((tags.includes("video") || tags.includes("animated")) && ["mp4", "mov", "webm"].includes(fileType)) {
         imgElement.classList.add("video-preview"); // Viền xanh
-    } else if (tags.includes("ai_generated")) {
+    } else if ((tags.includes("ai_generated")) && ["jpg", "png", "jpeg"].includes(fileType)) {
         imgElement.classList.add("ai-preview"); // Viền vàng
+    } else if ((!tags.includes("ai_generated")) && ["jpg", "png", "jpeg"].includes(fileType)) {
+        imgElement.classList.add("img-preview"); // Viền hồng
     } else {
         imgElement.classList.add("default-preview"); // Viền hồng
     }
@@ -56,7 +60,6 @@ data.forEach(post => {
     mediaContainer.appendChild(imgElement);
     fragment.appendChild(mediaContainer);
 });
-
 
 
             // Xóa ảnh cũ và thêm ảnh mới vào một lần duy nhất
