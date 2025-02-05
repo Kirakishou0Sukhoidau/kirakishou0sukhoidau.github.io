@@ -603,10 +603,17 @@ input:after:first-child {
     border: 2px solid blue; /* Viền xanh cho video hoặc ảnh động */
     cursor: pointer;
 }
+
 .ai-preview {
     border: 2px solid gold; /* Viền vàng cho ảnh AI */
     cursor: pointer;
 }
+
+.gif-preview {
+    border: 2px solid green; /* Viền hồng cho ảnh bình thường */
+    cursor: pointer;
+}
+
 .img-preview {
     border: 2px solid pink; /* Viền hồng cho ảnh bình thường */
     cursor: pointer;
