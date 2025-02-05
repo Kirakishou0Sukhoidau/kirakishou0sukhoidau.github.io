@@ -47,6 +47,8 @@ data.forEach(post => {
         imgElement.classList.add("ai-preview"); // Viền vàng
     } else if ((!tags.includes("ai_generated")) && ["jpg", "png", "jpeg"].includes(fileType)) {
         imgElement.classList.add("img-preview"); // Viền hồng
+    } else if (tags.includes("animated") && ["gif"].includes(fileType)) {
+        imgElement.classList.add("gif-preview"); // Viền lục
     } else {
         imgElement.classList.add("default-preview"); // Viền hồng
     }
