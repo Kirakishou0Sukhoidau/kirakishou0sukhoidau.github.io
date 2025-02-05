@@ -21,7 +21,7 @@ function layAnh() {
                 return;
             }
 
-data.forEach(post => {
+
 data.forEach(post => {
     if (!post.file_url) return;
 
