@@ -137,7 +137,7 @@
              
   <br/>
   <button id="submit-search" type="submit">Tìm kiếm</button>
-  <select id="search-engine-search">
+  <select id="search-engine-search" onchange="adjustWidth(this)">
 
           <option value="default"><--Select Search Engine--></option>
   
@@ -178,7 +178,7 @@
         <label id="lb2">Nhập link để quét</label>
   <br/>
   <button id="submit-quet" type="submit">Kiểm tra</button>
-  <select id="search-engine-quet">
+  <select id="search-engine-quet" onchange="adjustWidth(this)">
     <option value="googlev">Google</option>
    <option value="checkscam">Check website</option>
     <option value="scamadviser">Scamadviser</option>
