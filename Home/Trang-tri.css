@@ -503,6 +503,48 @@ input:after:first-child {
       display: block;
     }
 
+    #cover-feed {
+        margin: 0 auto;
+        text-align: center;
+    width: 95%;
+    height: 95vh; /* Chiều cao 80% màn hình */
+    overflow-y: auto; /* Scroll chỉ trong cover-feed */
+    border: 2px solid #ccc;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+#feed {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+
+
+
+        .post img { max-width: 100%; }
+        .loading { text-align: center; padding: 10px; font-weight: bold; }
+    
+    .post {
+    width: 100%; /* Full width */
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background: #f9f9f9; /* Nền nhẹ để tách bài */
+}
+
+.post a {
+    font-size: 20px;
+    display: block; /* Cho tiêu đề xuống dòng */
+}
+
+.post img {
+    width: 100%;  /* 100% chiều rộng màn hình */
+    height: auto;  /* Giữ nguyên tỷ lệ */
+    display: block;
+    margin: 10px 0;
+}
+
+
  b {font-weight: bold;}
 
 
