@@ -877,3 +877,99 @@ for (const video of videosssi) {
 
   handleSearch("search");
 handleSearch("quet");
+
+
+let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms","worldpolitics" , "HENTAI_GIF", "HelplessHentai", "hentaibondage", "CumHentai", "AiUncensored", "Hentai__videos", "onepiecehentaiz", "HentaiAnal", "AnalHentai", "guro", "HardcoreHentaiBondage", "futanari", "quick_hentai", "yurigif", "YuriHentai", "yuri", "OralHentai", "HentaiAnaru", "MasturbationHentai", "MonsterGirl", "AraAra", "HentaiAndRoleplayy", "hentainmanga", "MikuNakanoNSFW", "NSFW_GIF", "AnimeWallpaperNSFW", "Hentai_AnimeNSFW", "nsfwanimegifs", "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", 
+    "yuriMILFs", "Rule_34", "rule34aiart", "Rule34LoL", "yugioh_nsfw", "JerkOffToAnime", "Nekomimi", "NekoHentai", "FairyTail_R34"]; // Thêm nhiều subreddit
+    
+let selectedSubredditReddit = subreddits[Math.floor(Math.random() * subreddits.length)];
+let subredditQueueReddit = [selectedSubredditReddit, ...subreddits.filter(sub => sub !== selectedSubredditReddit)];
+let aftersReddit = {}; // Lưu trạng thái 'after' của từng subreddit
+let loadingReddit = false;
+
+// Lazy Load ảnh
+function lazyLoadImagesReddit() {
+    const imagesReddit = document.querySelectorAll(".lazy");
+    const observerReddit = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const imgReddit = entry.target;
+                imgReddit.src = imgReddit.dataset.src;
+                imgReddit.classList.remove("lazy");
+                observerReddit.unobserve(imgReddit);
+            }
+        });
+    });
+
+    imagesReddit.forEach(imgReddit => observerReddit.observe(imgReddit));
+}
+
+// Tải bài viết từ subreddit hiện tại
+async function loadRedditFeedReddit() {
+    if (loadingReddit || subredditQueueReddit.length === 0) return;
+    loadingReddit = true;
+
+    let currentSubReddit = subredditQueueReddit[0]; // Lấy subreddit hiện tại
+    let urlReddit = `https://www.reddit.com/r/${currentSubReddit}.json?limit=100`;
+    if (aftersReddit[currentSubReddit]) urlReddit += `&after=${aftersReddit[currentSubReddit]}`;
+
+    try {
+        let resReddit = await fetch(urlReddit);
+        let dataReddit = await resReddit.json();
+        aftersReddit[currentSubReddit] = dataReddit.data.after || null;
+
+        let postsReddit = dataReddit.data.children
+            .filter(postReddit => postReddit.data.preview)
+            .map(postReddit => ({
+                title: postReddit.data.title,
+                url: postReddit.data.url,
+                image: postReddit.data.preview.images[0].source.url,
+                subreddit: currentSubReddit
+            }));
+
+        renderPostsReddit(postsReddit);
+
+        // Nếu subreddit hiện tại hết bài thì chuyển sang subreddit tiếp theo
+        if (!aftersReddit[currentSubReddit]) {
+            subredditQueueReddit.shift(); // Xóa subreddit đã hết bài
+        }
+    } catch (errorReddit) {
+        console.error(`Lỗi khi tải subreddit ${currentSubReddit}:`, errorReddit);
+    }
+
+    loadingReddit = false;
+}
+
+// Render bài viết vào #feed
+function renderPostsReddit(postsReddit) {
+    let feedReddit = document.getElementById("feed");
+    let fragmentReddit = document.createDocumentFragment();
+
+    postsReddit.forEach(postReddit => {
+        let divReddit = document.createElement("div");
+        divReddit.className = "post";
+        divReddit.innerHTML = `
+            <small>[${postReddit.subreddit}]</small><br>
+            <a href="${postReddit.url}" target="_blank">${postReddit.title}</a>
+            <img data-src="${postReddit.image}" class="lazy" alt="Image" loading="lazy">
+        `;
+        fragmentReddit.appendChild(divReddit);
+    });
+
+    feedReddit.appendChild(fragmentReddit);
+    lazyLoadImagesReddit();
+}
+
+// Theo dõi khi cuộn xuống gần cuối trang
+const observerReddit = new IntersectionObserver(entriesReddit => {
+    if (entriesReddit[0].isIntersecting) {
+        loadRedditFeedReddit();
+    }
+}, { root: null, rootMargin: "100px", threshold: 0.1 });
+
+// Bắt đầu tải lần đầu
+document.addEventListener("DOMContentLoaded", () => {
+    loadRedditFeedReddit();
+    observerReddit.observe(document.querySelector(".loading"));
+});
+
