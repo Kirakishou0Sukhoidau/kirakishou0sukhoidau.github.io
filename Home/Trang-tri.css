@@ -21,9 +21,6 @@
 }
 
 
-
-
-
 h2 {font-size: 1.5em;
     font-weight: bold;
  }
@@ -145,7 +142,6 @@ body {background-color: black;
   margin-right: 5px;
   pointer-events: none;
 }
-
 
 
 #loadi {
@@ -508,13 +504,13 @@ input:after:first-child {
         text-align: center;
     width: 95%;
     height: 95vh; /* Chiều cao 80% màn hình */
-    overflow-y: auto; /* Scroll chỉ trong cover-feed */
     border: 2px solid #ccc;
     padding: 10px;
     background: #f9f9f9;
 }
 
 #feed {
+    overflow-y: auto; /* Scroll chỉ trong cover-feed */
     width: 100%;
     min-height: 100%;
     height: 100%;
@@ -533,7 +529,7 @@ input:after:first-child {
 }
 
 .post a {
-    font-size: 20px;
+    font-size: 1.25em;
     display: block; /* Cho tiêu đề xuống dòng */
 }
 
