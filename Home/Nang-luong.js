@@ -879,7 +879,7 @@ for (const video of videosssi) {
 handleSearch("quet");
 
 
-let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms","worldpolitics" , "HENTAI_GIF", "HelplessHentai", "hentaibondage", "CumHentai", "AiUncensored", "Hentai__videos", "onepiecehentaiz", "HentaiAnal", "AnalHentai", "guro", "HardcoreHentaiBondage", "futanari", "quick_hentai", "yurigif", "YuriHentai", "yuri", "OralHentai", "HentaiAnaru", "MasturbationHentai", "MonsterGirl", "AraAra", "HentaiAndRoleplayy", "hentainmanga", "MikuNakanoNSFW", "NSFW_GIF", "AnimeWallpaperNSFW", "Hentai_AnimeNSFW", "nsfwanimegifs", "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", 
+let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HENTAI_GIF", "HelplessHentai", "hentaibondage", "CumHentai", "AiUncensored", "Hentai__videos", "onepiecehentaiz", "HentaiAnal", "AnalHentai", "guro", "HardcoreHentaiBondage", "futanari", "quick_hentai", "yurigif", "YuriHentai", "yuri", "OralHentai", "HentaiAnaru", "MasturbationHentai", "MonsterGirl", "AraAra", "HentaiAndRoleplayy", "hentainmanga", "MikuNakanoNSFW", "NSFW_GIF", "AnimeWallpaperNSFW", "Hentai_AnimeNSFW", "nsfwanimegifs", "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", 
     "yuriMILFs", "Rule_34", "rule34aiart", "Rule34LoL", "yugioh_nsfw", "JerkOffToAnime", "Nekomimi", "NekoHentai", "FairyTail_R34"]; // Thêm nhiều subreddit
     
 let selectedSubredditReddit = subreddits[Math.floor(Math.random() * subreddits.length)];
