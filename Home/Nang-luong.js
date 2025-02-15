@@ -893,6 +893,15 @@ let aftersReddit = {};
 let loadingReddit = false;
 let limitReddit = 100;
 
+// Hàm xáo trộn mảng Fisher-Yates
+function shuffleArrayReddit(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Lazy Load ảnh
 function lazyLoadImagesReddit() {
     const imagesReddit = document.querySelectorAll(".lazy");
     const observerReddit = new IntersectionObserver(entries => {
@@ -909,6 +918,7 @@ function lazyLoadImagesReddit() {
     imagesReddit.forEach(imgReddit => observerReddit.observe(imgReddit));
 }
 
+// Tải Reddit Feed với lazy load & shuffle
 async function loadRedditFeedReddit() {
     if (loadingReddit || subredditQueueReddit.length === 0) return;
     loadingReddit = true;
@@ -929,6 +939,7 @@ async function loadRedditFeedReddit() {
                 subreddit: currentSubReddit
             }));
 
+        shuffleArrayReddit(postsReddit); // Xáo trộn thứ tự bài trước khi hiển thị
         renderPostsReddit(postsReddit);
 
         if (dataReddit.data.after) {
@@ -938,13 +949,14 @@ async function loadRedditFeedReddit() {
         }
 
         loadingReddit = false;
-        checkScrollReddit(); // Kiểm tra sau mỗi lần tải bài
+        checkScrollReddit();
     } catch (errorReddit) {
         console.error(`Lỗi khi tải subreddit ${currentSubReddit}:`, errorReddit);
         loadingReddit = false;
     }
 }
 
+// Hiển thị bài viết
 function renderPostsReddit(postsReddit) {
     let feedReddit = document.getElementById("feed");
     let fragmentReddit = document.createDocumentFragment();
@@ -964,17 +976,15 @@ function renderPostsReddit(postsReddit) {
     lazyLoadImagesReddit();
 }
 
+// Kiểm tra scroll
 function checkScrollReddit() {
     let feedContainerReddit = document.getElementById("feed");
-    let loadingElementReddit = document.querySelector(".loading");
-
-    // Kiểm tra nếu `.loading` xuất hiện trong `#feed`, thì load thêm bài
     if (feedContainerReddit.scrollTop + feedContainerReddit.clientHeight >= feedContainerReddit.scrollHeight - 5) {
         loadRedditFeedReddit();
     }
 }
 
-// Reset Feed khi ấn nút
+// Reset Feed
 document.getElementById("reset-feed").addEventListener("click", () => {
     selectedSubredditReddit = subreddits[Math.floor(Math.random() * subreddits.length)];
     subredditQueueReddit = [selectedSubredditReddit, ...subreddits.filter(sub => sub !== selectedSubredditReddit)];
