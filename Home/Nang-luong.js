@@ -878,6 +878,7 @@ for (const video of videosssi) {
 handleSearch("quet");
 
 
+//bang-feed
 let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HENTAI_GIF", "HelplessHentai", "hentaibondage", "CumHentai", "AiUncensored", "Hentai__videos", "onepiecehentaiz", "HentaiAnal", "AnalHentai", 
                   "guro", "HardcoreHentaiBondage", "futanari", "quick_hentai", "yurigif", "YuriHentai", "yuri", "OralHentai", "HentaiAnaru", "MasturbationHentai", "MonsterGirl", "AraAra", "HentaiAndRoleplayy", "hentainmanga", "MikuNakanoNSFW", "NSFW_GIF", "AnimeWallpaperNSFW", "Hentai_AnimeNSFW", "nsfwanimegifs", 
                   "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", 
