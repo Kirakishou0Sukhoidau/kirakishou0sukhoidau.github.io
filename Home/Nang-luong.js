@@ -887,116 +887,89 @@ let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HEN
                   "BluearchiveNSFW", "animeplot", "recommendhanime", "Touhou_NSFW", "PantiesHentai"]; // Thêm nhiều subreddit
     
 
-let selectedSubredditReddit = subreddits[Math.floor(Math.random() * subreddits.length)];
-let subredditQueueReddit = [selectedSubredditReddit, ...subreddits.filter(sub => sub !== selectedSubredditReddit)];
 let aftersReddit = {};
-let loadingReddit = false;
-let limitReddit = 100;
+let currentSubreddit = subreddits[Math.floor(Math.random() * subreddits.length)];
+let loading = false;
 
-// Hàm xáo trộn mảng Fisher-Yates
-function shuffleArrayReddit(array) {
+// Hàm xáo trộn bài viết
+function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [array[i], array[j]] = [array[j], array[i]]; 
     }
 }
 
 // Lazy Load ảnh
-function lazyLoadImagesReddit() {
+function lazyLoadImages() {
     const imagesReddit = document.querySelectorAll(".lazy");
     const observerReddit = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const imgReddit = entry.target;
-                imgReddit.src = imgReddit.dataset.src;
-                imgReddit.classList.remove("lazy");
-                observerReddit.unobserve(imgReddit);
+                let img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove("lazy");
+                observerReddit.unobserve(img);
             }
         });
     });
 
-    imagesReddit.forEach(imgReddit => observerReddit.observe(imgReddit));
+    imagesReddit.forEach(img => observerReddit.observe(img));
 }
 
-// Tải Reddit Feed với lazy load & shuffle
-async function loadRedditFeedReddit() {
-    if (loadingReddit || subredditQueueReddit.length === 0) return;
-    loadingReddit = true;
+// Tải bài từ Reddit
+async function loadRedditFeed() {
+    if (loading) return;
+    loading = true;
 
-    let currentSubReddit = subredditQueueReddit[0];
-    let urlReddit = `https://www.reddit.com/r/${currentSubReddit}.json?limit=${limitReddit}`;
-    if (aftersReddit[currentSubReddit]) urlReddit += `&after=${aftersReddit[currentSubReddit]}`;
+    let urlReddit = `https://www.reddit.com/r/${currentSubreddit}.json?limit=100`;
+    if (aftersReddit[currentSubreddit]) urlReddit += `&after=${aftersReddit[currentSubreddit]}`;
 
-    try {
-        let resReddit = await fetch(urlReddit);
-        let dataReddit = await resReddit.json();
-        let postsReddit = dataReddit.data.children
-            .filter(postReddit => postReddit.data.preview)
-            .map(postReddit => ({
-                title: postReddit.data.title,
-                url: postReddit.data.url,
-                image: postReddit.data.preview.images[0].source.url,
-                subreddit: currentSubReddit
-            }));
+    let res = await fetch(urlReddit);
+    let data = await res.json();
+    aftersReddit[currentSubreddit] = data.data.after;
 
-        shuffleArrayReddit(postsReddit); // Xáo trộn thứ tự bài trước khi hiển thị
-        renderPostsReddit(postsReddit);
+    let postsReddit = data.data.children
+        .filter(post => post.data.preview)
+        .map(post => ({
+            title: post.data.title,
+            url: `https://www.reddit.com${post.data.permalink}`,
+            image: post.data.preview.images[0].source.url,
+            subreddit: currentSubreddit
+        }));
 
-        if (dataReddit.data.after) {
-            aftersReddit[currentSubReddit] = dataReddit.data.after;
-        } else {
-            subredditQueueReddit.shift();
-        }
+    shuffleArray(postsReddit); // Hoán đổi vị trí bài
 
-        loadingReddit = false;
-        checkScrollReddit();
-    } catch (errorReddit) {
-        console.error(`Lỗi khi tải subreddit ${currentSubReddit}:`, errorReddit);
-        loadingReddit = false;
-    }
-}
-
-// Hiển thị bài viết
-function renderPostsReddit(postsReddit) {
-    let feedReddit = document.getElementById("feed");
-    let fragmentReddit = document.createDocumentFragment();
-
-    postsReddit.forEach(postReddit => {
-        let divReddit = document.createElement("div");
-        divReddit.className = "post";
-        divReddit.innerHTML = `
-            <small>[${postReddit.subreddit}]</small><br>
-            <a href="${postReddit.url}" target="_blank">${postReddit.title}</a>
-            <img data-src="${postReddit.image}" class="lazy" alt="Image" loading="lazy">
+    let html = "";
+    postsReddit.forEach(post => {
+        html += `
+            <div class="post">
+                <small>[${post.subreddit}]</small><br>
+                <a href="${post.url}" target="_blank" rel="noopener noreferrer">${post.title}</a>
+                <img data-src="${post.image}" class="lazy" alt="Image" loading="lazy">
+            </div>
         `;
-        fragmentReddit.appendChild(divReddit);
     });
 
-    feedReddit.appendChild(fragmentReddit);
-    lazyLoadImagesReddit();
+    document.getElementById("feed").innerHTML += html;
+    lazyLoadImages();
+
+    loading = false;
 }
 
-// Kiểm tra scroll
-function checkScrollReddit() {
-    let feedContainerReddit = document.getElementById("feed");
-    if (feedContainerReddit.scrollTop + feedContainerReddit.clientHeight >= feedContainerReddit.scrollHeight - 5) {
-        loadRedditFeedReddit();
+// Xử lý scroll trong #feed
+document.getElementById("feed").addEventListener("scroll", function () {
+    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 10) {
+        loadRedditFeed();
     }
-}
+});
 
-// Reset Feed
-document.getElementById("reset-feed").addEventListener("click", () => {
-    selectedSubredditReddit = subreddits[Math.floor(Math.random() * subreddits.length)];
-    subredditQueueReddit = [selectedSubredditReddit, ...subreddits.filter(sub => sub !== selectedSubredditReddit)];
+// Reset feed - Chọn subreddit mới và xóa bài cũ
+document.getElementById("reset-feed").addEventListener("click", function () {
+    currentSubreddit = subreddits[Math.floor(Math.random() * subreddits.length)];
     document.getElementById("feed").innerHTML = "";
-    aftersReddit = {};
-    loadingReddit = false;
-    loadRedditFeedReddit();
+    aftersReddit = {}; 
+    loadRedditFeed();
 });
 
-// Khi trang load, kiểm tra ngay trạng thái scroll của `#feed`
-document.addEventListener("DOMContentLoaded", () => {
-    loadRedditFeedReddit();
-    let feedContainerReddit = document.getElementById("feed");
-    feedContainerReddit.addEventListener("scroll", checkScrollReddit);
-});
+// Load lần đầu
+loadRedditFeed();
