@@ -958,7 +958,7 @@ async function loadRedditFeed() {
 
 // Xử lý scroll trong #feed
 document.getElementById("feed").addEventListener("scroll", function () {
-    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 10) {
+    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 25) {
         loadRedditFeed();
     }
 });
