@@ -883,7 +883,7 @@ let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HEN
                   "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", 
                   "yuriMILFs", "Rule_34", "rule34aiart", "Rule34LoL", "yugioh_nsfw", "JerkOffToAnime", "Nekomimi", "NekoHentai", "FairyTail_R34", "AIExpansionHentai", "HentaiReverseRape2", "AnimeH34", 
                   "HentaiPetgirls", "saohentai", "HentaiVTuberGirls", "ecchi", "MaidHentai", "DragonMaidNSFW", "hatsunemikuhentaiv3", "ReZeroHentai", "Naruto_Hentai", "pixxx_naruto", "Naruto_AI", "FemboyRape", "FemboyHentai", 
-                  "BluearchiveNSFW"]; // Thêm nhiều subreddit
+                  "BluearchiveNSFW", "animeplot", "recommendhanime", "Touhou_NSFW", "PantiesHentai"]; // Thêm nhiều subreddit
     
 
 let selectedSubredditReddit = subreddits[Math.floor(Math.random() * subreddits.length)];
