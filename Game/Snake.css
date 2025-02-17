@@ -79,6 +79,7 @@ button:focus {
 /* Bảng Game Over */
 .game-over-screen {
     position: fixed;
+    color: black;
     top: 0;
     left: 0;
     width: 100%;
