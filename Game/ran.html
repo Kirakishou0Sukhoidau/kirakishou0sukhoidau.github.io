@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rắn săn mồi</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ran1.css">
+</head>
+<body>
+    <div id="game-container">
+             <div id="score-board">
+            Score: <span id="score">0</span>
+        </div>
+      <div id="baoquanh"> <div id="game-board"></div> </div>
+      <!-- Bảng thông báo Game Over -->
+<div id="game-over" style="display: none; text-align: center; padding: 20px;">
+    <h2>Thua</h2>
+    <p>Score: <span id="final-score">0</span></p>
+    <button onclick="restartGame()">Chơi lại</button>
+</div>
+        
+        <div class="controls">
+                 <p id="footer">Kirakishou</p>
+
+            <div class="dpad">
+                <button id="up">🔼</button>
+                <div>
+                    <button id="left">◀️</button>
+                    <button id="pause">⏸️</button>
+                    <button id="right">▶️</button>
+                </div>
+                <button id="down">🔽</button>
+            </div>
+        </div>
+    </div>
+    <script src="ran1.js"></script>
+</body>
+</html>
