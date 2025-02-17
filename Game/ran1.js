@@ -95,7 +95,7 @@ function changeDirection(newDirection) {
 // Tạm dừng hoặc tiếp tục game
 function togglePause() {
     isPaused = !isPaused;
-    document.getElementById('pause').textContent = isPaused ? '▶️' : '⏸️';
+    document.getElementById('pause').textContent = isPaused ? '⏺️' : '⏸️';
 }
 
 // Hàm game loop
@@ -165,9 +165,9 @@ function restartGame() {
     gameOverDiv.style.display = 'none';
     
     // Bắt đầu lại vòng lặp game
-    gameInterval = setInterval(gameLoop, 200);
+    gameInterval = setInterval(gameLoop, 150);
 }
 
 // Khởi tạo game
 createBoard();
-let gameInterval = setInterval(gameLoop, 200);  // Chạy game mỗi 200ms
+let gameInterval = setInterval(gameLoop, 150);  // Chạy game mỗi 200ms
