@@ -171,3 +171,9 @@ function restartGame() {
 // Khởi tạo game
 createBoard();
 let gameInterval = setInterval(gameLoop, 150);  // Chạy game mỗi 200ms
+
+
+
+document.addEventListener("keydown", function(event) {
+    alert("Bạn vừa nhấn phím: " + event.key); // Hiển thị phím đang bấm
+});
