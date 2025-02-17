@@ -153,3 +153,8 @@ document.addEventListener('keydown', (event) => {
         togglePause();  // Phím 5 để tạm dừng/tiếp tục
     }
 });
+
+
+document.addEventListener("keydown", function(event) {
+    alert("Bạn vừa nhấn phím: " + event.key); // Hiển thị phím đang bấm
+});
