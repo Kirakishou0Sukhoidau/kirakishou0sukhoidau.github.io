@@ -879,7 +879,7 @@ handleSearch("quet");
 
 
 //bang-feed
-let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HENTAI_GIF", "HelplessHentai", "hentaibondage", "CumHentai", "AiUncensored", "Hentai__videos", "onepiecehentaiz", "HentaiAnal", "AnalHentai", "WonderWomanNSFW", 
+let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HENTAI_GIF", "HelplessHentai", "hentaibondage", "CumHentai", "AiUncensored", "Hentai__videos", "onepiecehentaiz", "HentaiAnal", "AnalHentai", "WonderWomanNSFW", "FrierenNSFW", "Frieren_NSFW", "FrierenHentaiAI", 
                   "guro", "HardcoreHentaiBondage", "futanari", "quick_hentai", "yurigif", "YuriHentai", "yuri", "OralHentai", "HentaiAnaru", "MasturbationHentai", "MonsterGirl", "AraAra", "HentaiAndRoleplayy", "hentainmanga", "MikuNakanoNSFW", "NSFW_GIF", "AnimeWallpaperNSFW", "Hentai_AnimeNSFW", "nsfwanimegifs", 
                   "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", "GuraLewdz", "hentai_sex_videos_hub", "hentaipower", "ElfHentai", "groupsexhentai", "awesomePublicNudity", "punchingslappingbdsm", "bdsm", "HumiliationBDSM", "HentaiTrade_N_Feed", "Short_Hentai", "AnimeTitties", 
                   "yuriMILFs", "Rule_34", "rule34aiart", "Rule34LoL", "yugioh_nsfw", "JerkOffToAnime", "Nekomimi", "NekoHentai", "FairyTail_R34", "AIExpansionHentai", "HentaiReverseRape2", "AnimeH34", "swimsuithentai", "orgasmcontrol", "Orgasms", "OralPleasure", "Hentai__videos", "hentaichannel",
