@@ -119,7 +119,7 @@ function changeDirection(newDirection) {
 // Tạm dừng hoặc tiếp tục game
 function togglePause() {
     isPaused = !isPaused;
-    document.getElementById('pause').textContent = isPaused ? '▶️' : '⏸️';
+    document.getElementById('pause').textContent = isPaused ? '⏺️' : '⏸️';
 }
 
 document.getElementById('up').addEventListener('click', () => changeDirection('UP'));
