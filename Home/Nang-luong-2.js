@@ -118,7 +118,8 @@ let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HEN
                   "GenshinImpactHentai", "GenshinImpactNSFW", "HentaiMini2", "Kurumitokisakihentai", "GuraLewdz", "hentai_sex_videos_hub", "hentaipower", "ElfHentai", "groupsexhentai", "awesomePublicNudity", "punchingslappingbdsm", "bdsm", "HumiliationBDSM", "HentaiTrade_N_Feed", "Short_Hentai", "AnimeTitties", 
                   "yuriMILFs", "Rule_34", "rule34aiart", "Rule34LoL", "yugioh_nsfw", "JerkOffToAnime", "Nekomimi", "NekoHentai", "FairyTail_R34", "AIExpansionHentai", "HentaiReverseRape2", "AnimeH34", "swimsuithentai", "orgasmcontrol", "Orgasms", "OralPleasure", "Hentai__videos", "hentaichannel",
                   "HentaiPetgirls", "saohentai", "HentaiVTuberGirls", "ecchi", "MaidHentai", "DragonMaidNSFW", "hatsunemikuhentaiv3", "ReZeroHentai", "Naruto_Hentai", "pixxx_naruto", "Naruto_AI", "FemboyRape", "FemboyHentai", "XrayHentai", "jerkbudsHentai", "QoS_Hentai_and_RP", "BlackedHentaiandRP", 
-                  "BluearchiveNSFW", "animeplot", "recommendhanime", "Touhou_NSFW", "PantiesHentai", "MiSideR34", "OshiNoKo_Hentai", "oshinokonsfw", "DCNSFW", "SpreadingHentai", "Shinobuhentai", "WelcometohentaiIruma", "AnimeSeeThrough", "QuintupletsHentai", "masteruwuoficial", "pantsu"]; // Thêm nhiều subreddit
+                  "BluearchiveNSFW", "animeplot", "recommendhanime", "Touhou_NSFW", "PantiesHentai", "MiSideR34", "OshiNoKo_Hentai", "oshinokonsfw", "DCNSFW", "SpreadingHentai", "Shinobuhentai", "WelcometohentaiIruma", "AnimeSeeThrough", "QuintupletsHentai", "masteruwuoficial", "pantsu", "AlyaNSFW", "Alya_sanNsfw", 
+                 "PublicSexPorn", "Bondage"]; // Thêm nhiều subreddit
     
 
 let aftersReddit = {};
