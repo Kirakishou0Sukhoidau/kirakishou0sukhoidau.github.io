@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rắn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="snake.css">
+</head>
+<body>
+    <div class="game-container">
+                <div class="score-board">
+            <p id="score">Score: 0</p>
+        </div>
+        <div class="game-screen">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        <p id="footer">Kirakishou</p>
+        <div class="controls">
+            <div class="dpad">
+                <button id="up">🔼</button>
+                <div class="dpad-middle">
+                    <button id="left">◀️</button>
+                    <button id="pause">⏸️</button>
+                    <button id="right">▶️</button>
+                </div>
+                <button id="down">🔽</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng Game Over -->
+    <div id="gameOverScreen" class="game-over-screen">
+        <div class="game-over-content">
+            <h2>Game Over</h2>
+            <p id="finalScore">Điểm: 0</p>
+            <button id="restart">Chơi lại</button>
+        </div>
+    </div>
+
+    <script src="snake.js"></script>
+</body>
+</html>
