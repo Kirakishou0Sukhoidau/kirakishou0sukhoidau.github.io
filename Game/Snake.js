@@ -29,9 +29,12 @@ function drawSnake() {
     });
 }
 
+
 function drawFood() {
     ctx.fillStyle = 'red';
-    ctx.fillRect(food.x * size, food.y * size, size, size);
+    ctx.beginPath();
+    ctx.arc(food.x * size + size / 2, food.y * size + size / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
 }
 
 // Tạo thức ăn mới
