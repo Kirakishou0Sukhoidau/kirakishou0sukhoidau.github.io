@@ -86,7 +86,7 @@ function updateScore() {
 
 // Hiển thị bảng Game Over
 function displayGameOver() {
-    document.getElementById('finalScore').textContent = `Điểm: ${score}`;
+    document.getElementById('finalScore').textContent = `Score: ${score}`;
     document.getElementById('gameOverScreen').style.display = 'flex';
 }
 
