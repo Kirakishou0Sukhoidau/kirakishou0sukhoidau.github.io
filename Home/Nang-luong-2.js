@@ -135,7 +135,7 @@ function shuffleArray(array) {
 }
 
 // Lazy Load ảnh
-/*function lazyLoadImages() {
+function lazyLoadImagesRedditfeed() {
     const imagesReddit = document.querySelectorAll(".lazy");
     const observerReddit = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -150,7 +150,7 @@ function shuffleArray(array) {
 
     imagesReddit.forEach(img => observerReddit.observe(img));
 }
-*/
+
 
 // Tải bài từ Reddit
 async function loadRedditFeed() {
@@ -187,7 +187,7 @@ async function loadRedditFeed() {
     });
 
     document.getElementById("feed").innerHTML += html;
-    lazyLoadImages();
+    lazyLoadImagesRedditfeed();
 
     loading = false;
 }
