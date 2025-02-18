@@ -185,8 +185,6 @@ AnHien.addEventListener("click", function() {
 
 
 
-
-
 //load
 
 //xoa-chu-input
@@ -280,8 +278,6 @@ setTimeout(() => {
 
 
 
-
-
 //bang thong bao
 //    alert ("Xin chào tiểu thư Kirakishou")
 /* var thongbao = document.getElementById("thongbao");
@@ -342,8 +338,6 @@ if (cookieDongy) {
     backdrop.style.display = "block";
     document.body.classList.add("modal-open"); // Chặn cuộn khi modal hiển thị
 };
-
-
 
 
 
@@ -673,7 +667,6 @@ thembordermtl.addEventListener('click', function() {
 
 
 
-
 //url
 const inputURL = document.getElementById('input-link');
 const searchEngineLinkSelect = document.getElementById('search-engine-link');
@@ -707,11 +700,6 @@ hienBgt.addEventListener('click', function() {
   const textDiv = this.closest('.ul-bq'); // Tìm div #text gần nhất
   textDiv.querySelector('p').style.display = 'none'; // Ẩn thẻ p trong #text
 });*/
-
-
-
-
-
 
 
 
