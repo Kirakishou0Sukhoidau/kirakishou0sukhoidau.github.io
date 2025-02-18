@@ -69,7 +69,7 @@ data.forEach(post => {
             khuXemAnh.appendChild(fragment);
 
             // Kích hoạt lazy load
-            lazyLoadImages();
+            lazyLoadImagesRule34();
         })
         .catch(error => {
             console.error("Lỗi tải ảnh/video:", error);
@@ -78,7 +78,7 @@ data.forEach(post => {
 }
 
 // **Lazy load hình ảnh**
-function lazyLoadImages() {
+function lazyLoadImagesRule34() {
     const images = document.querySelectorAll(".image-preview");
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
