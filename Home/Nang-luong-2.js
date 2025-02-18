@@ -119,7 +119,7 @@ let subreddits = ["hentai", "rule34", "rape_hentai", "HentaiForcedOrgasms", "HEN
                   "yuriMILFs", "Rule_34", "rule34aiart", "Rule34LoL", "yugioh_nsfw", "JerkOffToAnime", "Nekomimi", "NekoHentai", "FairyTail_R34", "AIExpansionHentai", "HentaiReverseRape2", "AnimeH34", "swimsuithentai", "orgasmcontrol", "Orgasms", "OralPleasure", "Hentai__videos", "hentaichannel",
                   "HentaiPetgirls", "saohentai", "HentaiVTuberGirls", "ecchi", "MaidHentai", "DragonMaidNSFW", "hatsunemikuhentaiv3", "ReZeroHentai", "Naruto_Hentai", "pixxx_naruto", "Naruto_AI", "FemboyRape", "FemboyHentai", "XrayHentai", "jerkbudsHentai", "QoS_Hentai_and_RP", "BlackedHentaiandRP", 
                   "BluearchiveNSFW", "animeplot", "recommendhanime", "Touhou_NSFW", "PantiesHentai", "MiSideR34", "OshiNoKo_Hentai", "oshinokonsfw", "DCNSFW", "SpreadingHentai", "Shinobuhentai", "WelcometohentaiIruma", "AnimeSeeThrough", "QuintupletsHentai", "masteruwuoficial", "pantsu", "AlyaNSFW", "Alya_sanNsfw", 
-                 "PublicSexPorn", "Bondage", "2Booty", "tentaclesex", "TentacleRoleplay", "Tentai", "Allthewaythrough", "cumflation"]; // Thêm nhiều subreddit
+                 "PublicSexPorn", "Bondage", "2Booty", "tentaclesex", "TentacleRoleplay", "Tentai", "Allthewaythrough", "cumflation", "WutheringWavesHentai"]; // Thêm nhiều subreddit
     
 
 let aftersReddit = {};
