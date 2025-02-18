@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiển Thị Ảnh từ Yande.re</title>
+    <style>
+        #khu-xem-anh {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .image-container {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        img {
+            border-radius: 5px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
+        .tags {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ảnh từ Yande.re</h2>
+    <div id="khu-xem-anh"></div>
+
+    <script>
+        async function fetchImages() {
+            const apiUrl = "https://yande.re/post.json?tags=rating%3Ae&limit=10&api_version=2";
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.posts && data.posts.length > 0) {
+                    const container = document.getElementById("khu-xem-anh");
+                    container.innerHTML = "";
+
+                    data.posts.forEach(post => {
+                        if (post.preview_url && post.file_url) {
+                            const imgContainer = document.createElement("div");
+                            imgContainer.classList.add("image-container");
+
+                            const img = document.createElement("img");
+                            img.src = post.preview_url;
+                            img.alt = "Ảnh từ Yande.re";
+                            img.width = post.preview_width;
+                            img.height = post.preview_height;
+                            img.addEventListener("click", () => {
+                                window.open(post.file_url, "_blank");
+                            });
+
+                            const tagText = document.createElement("div");
+                            tagText.classList.add("tags");
+                            tagText.textContent = post.tags.replace(/_/g, " "); // Hiển thị tag đẹp hơn
+
+                            let pressTimer;
+
+                            img.addEventListener("mousedown", (e) => {
+                                pressTimer = setTimeout(() => {
+                                    tagText.style.display = "block";
+                                }, 500); // Hiện tag sau 500ms giữ chuột
+                            });
+
+                            img.addEventListener("mouseup", () => {
+                                clearTimeout(pressTimer);
+                            });
+
+                            img.addEventListener("mouseleave", () => {
+                                clearTimeout(pressTimer);
+                            });
+
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(tagText);
+                            container.appendChild(imgContainer);
+                        }
+                    });
+                } else {
+                    console.warn("Không có ảnh nào được tìm thấy.");
+                }
+            } catch (error) {
+                console.error("Lỗi khi lấy ảnh từ API:", error);
+            }
+        }
+
+        fetchImages();
+    </script>
+</body>
+</html>
