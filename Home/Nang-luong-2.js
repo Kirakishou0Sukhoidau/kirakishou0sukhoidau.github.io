@@ -135,7 +135,7 @@ function shuffleArray(array) {
 }
 
 // Lazy Load ảnh
-function lazyLoadImages() {
+/*function lazyLoadImages() {
     const imagesReddit = document.querySelectorAll(".lazy");
     const observerReddit = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -150,6 +150,7 @@ function lazyLoadImages() {
 
     imagesReddit.forEach(img => observerReddit.observe(img));
 }
+*/
 
 // Tải bài từ Reddit
 async function loadRedditFeed() {
