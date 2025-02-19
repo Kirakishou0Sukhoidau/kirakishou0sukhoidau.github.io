@@ -1,80 +1,94 @@
-let currentPage = parseInt(localStorage.getItem("currentPage")) || 0; // Lấy từ localStorage hoặc mặc định 0
+let currentPage = parseInt(localStorage.getItem("currentPage")) || 0;
 
 function layAnh() {
     const khuXemAnh = document.getElementById("khu-xem-anh");
     const tag = document.getElementById("tag-input").value.trim();
-    const apiUrl = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=25&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`;
 
-    console.log("Fetching:", apiUrl); // Kiểm tra URL API
+    // API cũ (XML)
+    const api1Url = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=25&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`; //Max1000limit
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            console.log("API Response:", data); // Kiểm tra dữ liệu trả về
+    // API Danbooru (JSON) - Chỉ lấy ảnh rating:s (Safe)
+    const api2Url = `https://danbooru.donmai.us/posts.json?tags=${encodeURIComponent(tag)}+rating:e&limit=25&page=${currentPage + 1}`;  //Max200limit
 
-            // Tạo DocumentFragment để giảm số lần thao tác DOM
-            const fragment = document.createDocumentFragment();
-            document.getElementById("select-page").value = currentPage;
+    console.log("Fetching:", api1Url, api2Url);
 
-            if (!data || !Array.isArray(data) || data.length === 0) {
-                khuXemAnh.innerHTML = "<p>Không tìm thấy ảnh!</p>";
-                return;
-            }
+    Promise.all([
+        fetch(api1Url).then(res => res.json()).catch(() => []),
+        fetch(api2Url).then(res => res.json()).catch(() => [])
+    ])
+    .then(([data1, data2]) => {
+        console.log("API1 Response:", data1);
+        console.log("API2 Response:", data2);
 
+        // Lọc ảnh Danbooru rating:s
+        const filteredData2 = data2.filter(post => post.rating === "e");
 
-data.forEach(post => {
-    if (!post.file_url) return;
+        // Gộp kết quả
+        const mergedData = [...data1, ...filteredData2];
 
-    let mediaContainer = document.createElement("div");
-    mediaContainer.classList.add("media-item");
+        // Hiển thị ảnh
+        hienThiAnh(mergedData);
+    })
+    .catch(error => {
+        console.error("Lỗi tải ảnh:", error);
+        khuXemAnh.innerHTML = "<p>Lỗi khi tải ảnh!</p>";
+    });
+}
 
-    let imgElement = document.createElement("img");
-    imgElement.alt = "Hình ảnh";
-    imgElement.classList.add("image-preview");
-    imgElement.dataset.src = post.preview_url || post.sample_url;
-    imgElement.style.opacity = "0"; 
+function hienThiAnh(data) {
+    const khuXemAnh = document.getElementById("khu-xem-anh");
+    const fragment = document.createDocumentFragment();
+    document.getElementById("select-page").value = currentPage;
 
-    // **Thêm title để hiện tooltip khi giữ vào ảnh**
-    imgElement.title = post.tags; 
-
-    // **Kiểm tra tags và định dạng file**
-    let tags = post.tags.toLowerCase();
-    let fileType = post.file_url.split('.').pop().toLowerCase(); // Lấy phần đuôi file
-
-    if ((tags.includes("video") || tags.includes("animated")) && ["mp4", "mov", "webm"].includes(fileType)) {
-        imgElement.classList.add("video-preview"); // Viền xanh
-    } else if ((tags.includes("ai_generated")) && ["jpg", "png", "jpeg"].includes(fileType)) {
-        imgElement.classList.add("ai-preview"); // Viền vàng
-    } else if ((!tags.includes("ai_generated")) && ["jpg", "png", "jpeg"].includes(fileType)) {
-        imgElement.classList.add("img-preview"); // Viền hồng
-    } else if (tags.includes("animated") && ["gif"].includes(fileType)) {
-        imgElement.classList.add("gif-preview"); // Viền lục
-    } else {
-        imgElement.classList.add("default-preview"); // Viền hồng
+    if (!data || !Array.isArray(data) || data.length === 0) {
+        khuXemAnh.innerHTML = "<p>Không tìm thấy ảnh!</p>";
+        return;
     }
 
-    imgElement.addEventListener("click", () => {
-        window.open(post.file_url, "_blank");
+    data.forEach(post => {
+        const fileUrl = post.file_url || post.large_file_url;
+        const previewUrl = post.preview_url || post.preview_file_url || post.sample_url;
+        if (!fileUrl || !previewUrl) return;
+
+        let mediaContainer = document.createElement("div");
+        mediaContainer.classList.add("media-item");
+
+        let imgElement = document.createElement("img");
+        imgElement.alt = "Hình ảnh";
+        imgElement.classList.add("image-preview");
+        imgElement.dataset.src = previewUrl;
+        imgElement.style.opacity = "0";
+        imgElement.title = post.tags || post.tag_string; 
+
+        // Xác định border theo file type và tags
+        let tags = (post.tags || post.tag_string || "").toLowerCase();
+        let fileType = fileUrl.split('.').pop().toLowerCase();
+
+        if ((tags.includes("video") || tags.includes("animated")) && ["mp4", "mov", "webm"].includes(fileType)) {
+            imgElement.classList.add("video-preview"); // Viền xanh
+        } else if (tags.includes("ai_generated") && ["jpg", "png", "jpeg"].includes(fileType)) {
+            imgElement.classList.add("ai-preview"); // Viền vàng
+        } else if (!tags.includes("ai_generated") && ["jpg", "png", "jpeg"].includes(fileType)) {
+            imgElement.classList.add("img-preview"); // Viền hồng
+        } else if (tags.includes("animated") && fileType === "gif") {
+            imgElement.classList.add("gif-preview"); // Viền lục
+        } else {
+            imgElement.classList.add("default-preview"); // Viền mặc định
+        }
+
+        imgElement.addEventListener("click", () => {
+            window.open(fileUrl, "_blank");
+        });
+
+        imgElement.onerror = () => imgElement.style.display = "none";
+
+        mediaContainer.appendChild(imgElement);
+        fragment.appendChild(mediaContainer);
     });
 
-    imgElement.onerror = () => imgElement.style.display = "none";
-
-    mediaContainer.appendChild(imgElement);
-    fragment.appendChild(mediaContainer);
-});
-
-
-            // Xóa ảnh cũ và thêm ảnh mới vào một lần duy nhất
-            khuXemAnh.innerHTML = "";
-            khuXemAnh.appendChild(fragment);
-
-            // Kích hoạt lazy load
-            lazyLoadImagesRule34();
-        })
-        .catch(error => {
-            console.error("Lỗi tải ảnh/video:", error);
-            khuXemAnh.innerHTML = "<p>Lỗi khi tải ảnh!</p>";
-        });
+    khuXemAnh.innerHTML = "";
+    khuXemAnh.appendChild(fragment);
+    lazyLoadImagesRule34();
 }
 
 // **Lazy load hình ảnh**
@@ -85,7 +99,7 @@ function lazyLoadImagesRule34() {
             if (entry.isIntersecting) {
                 let img = entry.target;
                 img.src = img.dataset.src;
-                img.style.opacity = "1"; // Hiện ảnh khi load xong
+                img.style.opacity = "1";
                 obs.unobserve(img);
             }
         });
@@ -94,27 +108,26 @@ function lazyLoadImagesRule34() {
     images.forEach(img => observer.observe(img));
 }
 
-
-// Cập nhật localStorage khi đổi trang
+// **Cập nhật localStorage khi đổi trang**
 function capNhatTrangMoi(pid) {
     currentPage = pid;
     localStorage.setItem("currentPage", currentPage);
     layAnh();
 }
 
-// Xử lý nút Previous
+// **Xử lý nút Previous**
 document.getElementById("previous").addEventListener("click", function () {
     if (currentPage > 0) {
         capNhatTrangMoi(currentPage - 1);
     }
 });
 
-// Xử lý nút Next
+// **Xử lý nút Next**
 document.getElementById("nexts").addEventListener("click", function () {
     capNhatTrangMoi(currentPage + 1);
 });
 
-// Xử lý nhập số trang và nhấn "Tới"
+// **Xử lý nhập số trang và nhấn "Tới"**
 document.getElementById("skip-pages").addEventListener("click", function () {
     let pageInput = parseInt(document.getElementById("select-page").value);
 
@@ -125,36 +138,24 @@ document.getElementById("skip-pages").addEventListener("click", function () {
     }
 });
 
-// Gọi ảnh ban đầu khi load trang
-layAnh();
-
-// CSS để căn chỉnh ảnh và video preview
-/*const style = document.createElement("style");
-style.innerHTML = `
- 
-`;
-document.head.appendChild(style);
-*/
-
+// **Tìm ảnh mới**
 function timAnhMoi() {
-    currentPage = 0; // Reset về trang đầu
-    localStorage.setItem("currentPage", currentPage); // Cập nhật localStorage
-    layAnh(); // Gọi hàm tải ảnh
+    currentPage = 0;
+    localStorage.setItem("currentPage", currentPage);
+    layAnh();
 }
 
-
+// **Gọi hàm tìm ảnh khi nhấn Enter**
 document.getElementById("tag-input").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Ngăn reload trang
-        timAnhMoi(); // Gọi tìm ảnh luôn
+        event.preventDefault();
+        timAnhMoi();
     }
 });
 
-
 document.getElementById("select-page").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Ngăn tải lại trang
-        
+        event.preventDefault();
         let pageInput = parseInt(this.value);
         if (!isNaN(pageInput) && pageInput >= 0) {
             capNhatTrangMoi(pageInput);
@@ -163,6 +164,87 @@ document.getElementById("select-page").addEventListener("keydown", function(even
         }
     }
 });
+
+// **Gọi ảnh ban đầu khi load trang**
+layAnh();
+
+
+        
+
+
+
+//Tag-goi-y
+document.addEventListener("DOMContentLoaded", function () {
+    const tagInputDanbooru = document.getElementById('tag-input');
+    const suggestionsBoxDanbooru = document.createElement('div');
+    suggestionsBoxDanbooru.id = 'suggestions';
+    document.body.appendChild(suggestionsBoxDanbooru);
+
+    tagInputDanbooru.addEventListener('input', function () {
+        const queryDanbooru = this.value.trim();
+        suggestionsBoxDanbooru.innerHTML = ''; // Xóa gợi ý cũ
+
+        if (queryDanbooru.length === 0) {
+            suggestionsBoxDanbooru.style.display = 'none';
+            return; // Không tìm kiếm nếu rỗng
+        }
+
+        fetch(`https://danbooru.donmai.us/tags.json?search[name_matches]=${queryDanbooru}*`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    suggestionsBoxDanbooru.style.display = 'none';
+                    return;
+                }
+
+                // Lọc bỏ tag có 0 posts và sắp xếp theo post_count giảm dần
+                const validTags = data
+                    .filter(tag => tag.post_count > 0) // Chỉ giữ tag có ít nhất 1 post
+                    .sort((a, b) => b.post_count - a.post_count); // Ưu tiên tag phổ biến
+
+                if (validTags.length === 0) {
+                    suggestionsBoxDanbooru.style.display = 'none';
+                    return;
+                }
+
+                suggestionsBoxDanbooru.innerHTML = '';
+                validTags.slice(0, 10).forEach(tag => {
+                    const suggestion = document.createElement('div');
+                    suggestion.textContent = `${tag.name} (${tag.post_count} posts)`;
+                    suggestion.classList.add("suggestion-item");
+                    suggestion.addEventListener('click', function () {
+                        tagInputDanbooru.value = tag.name;
+                        suggestionsBoxDanbooru.style.display = 'none'; // Ẩn sau khi chọn
+                    });
+                    suggestionsBoxDanbooru.appendChild(suggestion);
+                });
+
+                const rectDanbooru = tagInputDanbooru.getBoundingClientRect();
+                suggestionsBoxDanbooru.style.top = `${rectDanbooru.bottom + window.scrollY}px`;
+                suggestionsBoxDanbooru.style.left = `${rectDanbooru.left + window.scrollX}px`;
+                suggestionsBoxDanbooru.style.width = `${rectDanbooru.width}px`;
+                suggestionsBoxDanbooru.style.display = 'block'; // Hiện gợi ý khi có kết quả
+            })
+            .catch(error => {
+                console.error('Lỗi khi lấy gợi ý:', error);
+            });
+    });
+
+    // Hiển thị gợi ý khi ô nhập liệu có focus
+    tagInputDanbooru.addEventListener('focus', function () {
+        if (suggestionsBoxDanbooru.innerHTML.trim() !== '') {
+            suggestionsBoxDanbooru.style.display = 'block';
+        }
+    });
+
+    // Ẩn gợi ý khi mất focus, nhưng chờ 200ms để xử lý trường hợp click vào gợi ý
+    tagInputDanbooru.addEventListener('blur', function () {
+        setTimeout(() => {
+            suggestionsBoxDanbooru.style.display = 'none';
+        }, 200);
+    });
+});
+
 
 
 
@@ -181,8 +263,10 @@ const resettkButtonnp2 = document.querySelector(".resetnp2");
 resettkButtonnp2.addEventListener("click", function(event) {
   event.preventDefault(); // Ngăn hành vi mặc định  const inputrsElementtk2 = document.querySelector("#form-quet #input-quet");
       const inputrsElementtknp2 = document.querySelector("#select-page");
-  inputrsElementtknp2.value = "";
+  inputrsElementtknp2.value = "0";
 });
 
 
 
+
+        
