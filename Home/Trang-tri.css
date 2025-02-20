@@ -672,7 +672,7 @@ input:after:first-child {
 
         /* CSS cho danh sách gợi ý */
         #suggestions {
-            border: 1px solid #ccc;
+            border: 1px solid black;
             max-height: 150px;
             overflow-y: auto;
             position: absolute;
