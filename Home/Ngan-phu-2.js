@@ -3,51 +3,57 @@ let currentPage = parseInt(localStorage.getItem("currentPage")) || 0;
 function layAnh() {
     const khuXemAnh = document.getElementById("khu-xem-anh");
     const tag = document.getElementById("tag-input").value.trim();
+    document.getElementById("select-page").value = currentPage;
 
-    // API cũ (XML)
-    const api1Url = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=25&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`; //Max1000limit
+    // API XML (rule34.xxx)
+    const apiRule34Xxx = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=25&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`;
 
-    // API Danbooru (JSON) - Chỉ lấy ảnh rating:s (Safe)
-    const api2Url = `https://danbooru.donmai.us/posts.json?tags=${encodeURIComponent(tag)}+rating:e&limit=25&page=${currentPage + 1}`;  //Max200limit
+    // API JSON (Danbooru) - Lấy cả rating:s và rating:q, chỉ gọi nếu tags <= 2
+    let apiDanbooruUrl = null;
+    const tagsArray = tag.split(" ");
+    if (tagsArray.length <= 2) {
+        apiDanbooruUrl = `https://danbooru.donmai.us/posts.json?tags=${encodeURIComponent(tag)} (rating:e OR rating:q)&limit=25&page=${currentPage + 1}`;
+    }
 
-    console.log("Fetching:", api1Url, api2Url);
+    console.log("Fetching:", apiRule34Xxx);
+    if (apiDanbooruUrl) console.log("Fetching:", apiDanbooruUrl);
 
+    // Gọi cả hai API song song
     Promise.all([
-        fetch(api1Url).then(res => res.json()).catch(() => []),
-        fetch(api2Url).then(res => res.json()).catch(() => [])
-    ])
-    .then(([data1, data2]) => {
-        console.log("API1 Response:", data1);
-        console.log("API2 Response:", data2);
+        fetch(apiRule34Xxx).then(res => res.json()).catch(() => null),
+        apiDanbooruUrl ? fetch(apiDanbooruUrl).then(res => res.json()).catch(() => null) : null
+    ]).then(([xmlData, danbooruData]) => {
+        const fragment = document.createDocumentFragment();
+        khuXemAnh.innerHTML = ""; // Xóa ảnh cũ trước khi thêm mới
 
-        // Lọc ảnh Danbooru rating:s
-        const filteredData2 = data2.filter(post => post.rating === "e");
+        if (xmlData && Array.isArray(xmlData) && xmlData.length > 0) {
+            addImagesToFragment(xmlData, fragment, false);
+        }
 
-        // Gộp kết quả
-        const mergedData = [...data1, ...filteredData2];
+        if (danbooruData && Array.isArray(danbooruData) && danbooruData.length > 0) {
+            addImagesToFragment(danbooruData, fragment, true);
+        }
 
-        // Hiển thị ảnh
-        hienThiAnh(mergedData);
-    })
-    .catch(error => {
+        if (!fragment.hasChildNodes()) {
+            khuXemAnh.innerHTML = "<p>Không tìm thấy ảnh!</p>";
+        } else {
+            khuXemAnh.appendChild(fragment);
+            lazyLoadImagesHent();
+        }
+    }).catch(error => {
         console.error("Lỗi tải ảnh:", error);
         khuXemAnh.innerHTML = "<p>Lỗi khi tải ảnh!</p>";
     });
 }
 
-function hienThiAnh(data) {
-    const khuXemAnh = document.getElementById("khu-xem-anh");
-    const fragment = document.createDocumentFragment();
-    document.getElementById("select-page").value = currentPage;
-
-    if (!data || !Array.isArray(data) || data.length === 0) {
-        khuXemAnh.innerHTML = "<p>Không tìm thấy ảnh!</p>";
-        return;
-    }
-
+// Thêm ảnh vào trang
+function addImagesToFragment(data, fragment, isDanbooru = false) {
     data.forEach(post => {
-        const fileUrl = post.file_url || post.large_file_url;
-        const previewUrl = post.preview_url || post.preview_file_url || post.sample_url;
+        let fileUrl = post.file_url;
+        let previewUrl = isDanbooru
+            ? post.preview_file_url || post.large_file_url || fileUrl  // Danbooru: Dùng preview trước
+            : post.preview_url || post.sample_url || fileUrl;          // abc.com: Dùng preview trước
+
         if (!fileUrl || !previewUrl) return;
 
         let mediaContainer = document.createElement("div");
@@ -58,10 +64,11 @@ function hienThiAnh(data) {
         imgElement.classList.add("image-preview");
         imgElement.dataset.src = previewUrl;
         imgElement.style.opacity = "0";
-        imgElement.title = post.tags || post.tag_string; 
+        imgElement.title = isDanbooru ? (post.tag_string || "Không có tags") : (post.tags || "Không có tags");
 
-        // Xác định border theo file type và tags
-        let tags = (post.tags || post.tag_string || "").toLowerCase();
+
+        // Xác định viền ảnh dựa trên tags & loại file
+        let tags = (post.tags || "").toLowerCase();
         let fileType = fileUrl.split('.').pop().toLowerCase();
 
         if ((tags.includes("video") || tags.includes("animated")) && ["mp4", "mov", "webm"].includes(fileType)) {
@@ -73,33 +80,26 @@ function hienThiAnh(data) {
         } else if (tags.includes("animated") && fileType === "gif") {
             imgElement.classList.add("gif-preview"); // Viền lục
         } else {
-            imgElement.classList.add("default-preview"); // Viền mặc định
+            imgElement.classList.add("default-preview"); // Viền hồng
         }
 
-        imgElement.addEventListener("click", () => {
-            window.open(fileUrl, "_blank");
-        });
-
+        imgElement.addEventListener("click", () => window.open(fileUrl, "_blank"));
         imgElement.onerror = () => imgElement.style.display = "none";
 
         mediaContainer.appendChild(imgElement);
         fragment.appendChild(mediaContainer);
     });
-
-    khuXemAnh.innerHTML = "";
-    khuXemAnh.appendChild(fragment);
-    lazyLoadImagesRule34();
 }
 
 // **Lazy load hình ảnh**
-function lazyLoadImagesRule34() {
+function lazyLoadImagesHent() {
     const images = document.querySelectorAll(".image-preview");
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 let img = entry.target;
                 img.src = img.dataset.src;
-                img.style.opacity = "1";
+                img.style.opacity = "1"; // Hiện ảnh khi load xong
                 obs.unobserve(img);
             }
         });
@@ -108,26 +108,26 @@ function lazyLoadImagesRule34() {
     images.forEach(img => observer.observe(img));
 }
 
-// **Cập nhật localStorage khi đổi trang**
+// Cập nhật localStorage khi đổi trang
 function capNhatTrangMoi(pid) {
     currentPage = pid;
     localStorage.setItem("currentPage", currentPage);
     layAnh();
 }
 
-// **Xử lý nút Previous**
+// Xử lý nút Previous
 document.getElementById("previous").addEventListener("click", function () {
     if (currentPage > 0) {
         capNhatTrangMoi(currentPage - 1);
     }
 });
 
-// **Xử lý nút Next**
+// Xử lý nút Next
 document.getElementById("nexts").addEventListener("click", function () {
     capNhatTrangMoi(currentPage + 1);
 });
 
-// **Xử lý nhập số trang và nhấn "Tới"**
+// Xử lý nhập số trang và nhấn "Tới"
 document.getElementById("skip-pages").addEventListener("click", function () {
     let pageInput = parseInt(document.getElementById("select-page").value);
 
@@ -138,14 +138,16 @@ document.getElementById("skip-pages").addEventListener("click", function () {
     }
 });
 
-// **Tìm ảnh mới**
+// Gọi ảnh ban đầu khi load trang
+layAnh();
+
+// Xử lý khi tìm ảnh mới
 function timAnhMoi() {
-    currentPage = 0;
+    currentPage = 0; // Reset về trang đầu
     localStorage.setItem("currentPage", currentPage);
     layAnh();
 }
 
-// **Gọi hàm tìm ảnh khi nhấn Enter**
 document.getElementById("tag-input").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -164,11 +166,6 @@ document.getElementById("select-page").addEventListener("keydown", function(even
         }
     }
 });
-
-// **Gọi ảnh ban đầu khi load trang**
-layAnh();
-
-
         
 
 
