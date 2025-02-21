@@ -502,15 +502,15 @@ input:after:first-child {
     #cover-feed {
         margin: 0 auto;
         text-align: center;
-    width: 95%;
-    height: 95vh; /* Chiều cao 80% màn hình */
+    width: 95vw;
+    height: 93vh; /* Chiều cao 80% màn hình */
     border: 2px solid #ccc;
     padding: 10px;
     background: #f9f9f9;
 }
 
 #feed {
-    overflow-y: auto; /* Scroll chỉ trong cover-feed */
+    overflow-y: scroll; /* Scroll chỉ trong cover-feed */
     width: 100%;
     min-height: 100%;
     height: 100%;
@@ -542,7 +542,6 @@ input:after:first-child {
 
 
  b {font-weight: bold;}
-
 
 
      h2.h2-p {margin:0 auto; 
@@ -720,8 +719,6 @@ input:after:first-child {
 }
 
 
-
-
 .name-app {
   background-color: white;
   font-weight: bold;
@@ -731,8 +728,6 @@ input:after:first-child {
   text-align: center;
   pointer-events: none;
 }
-
-
 
 
 .app-android .appmott, .app-android .apphaii {
@@ -751,15 +746,6 @@ input:after:first-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-
-
-
-
-
-
-
-
-
 
 
  #app {margin: 5px;}
