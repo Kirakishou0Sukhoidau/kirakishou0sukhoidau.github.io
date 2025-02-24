@@ -67,8 +67,21 @@ function addImagesToFragment(data, fragment, isDanbooru = false) {
         imgElement.title = isDanbooru ? (post.tag_string || "Không có tags") : (post.tags || "Không có tags");
 
 
-        // Xác định viền ảnh dựa trên tags & loại file
-        let tags = (post.tags || "").toLowerCase();
+        // Xác định viền ảnh dựa trên loại file
+let fileType = fileUrl.split('.').pop().toLowerCase();
+
+if (["mp4", "mov", "webm"].includes(fileType)) {
+    imgElement.classList.add("video-preview"); // Viền xanh
+} else if (fileType === "gif") {
+    imgElement.classList.add("gif-preview"); // Viền lục
+} else if (["jpg", "png", "jpeg"].includes(fileType)) {
+    imgElement.classList.add("img-preview"); // Viền hồng
+} else {
+    imgElement.classList.add("default-preview"); // Viền mặc định
+}
+
+        
+ /*       let tags = (post.tags || "").toLowerCase();
         let fileType = fileUrl.split('.').pop().toLowerCase();
 
         if ((tags.includes("video") || tags.includes("animated")) && ["mp4", "mov", "webm"].includes(fileType)) {
@@ -82,6 +95,7 @@ function addImagesToFragment(data, fragment, isDanbooru = false) {
         } else {
             imgElement.classList.add("default-preview"); // Viền hồng
         }
+        */
 
         imgElement.addEventListener("click", () => window.open(fileUrl, "_blank"));
         imgElement.onerror = () => imgElement.style.display = "none";
