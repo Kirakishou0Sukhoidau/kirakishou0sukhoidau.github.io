@@ -270,7 +270,7 @@ body.modal-open {
   align-items: center;
       /* margin-top: 100px;*/
        text-align: center;
-  font-family: Pinyon Script;
+  font-family: Old English Five;
 }
 
 .chu-chay span {
@@ -313,7 +313,8 @@ h1, span, p {pointer-events: none;}
     text-align: center;
     padding: 0.125em 0.125em 0em 0.125em;
     margin: 0 auto;
-    font-family: Pinyon Script;
+    font-family: Old English Five;
+    /*font-family: Pinyon Script;*/
     }
 
   /* .Hello {border: 1px solid black;
