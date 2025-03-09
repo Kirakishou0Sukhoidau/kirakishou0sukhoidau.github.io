@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'Old English Five'; /* Đặt tên cho font */
+    src: url('../fonts/OldEnglishFive.ttf') format('truetype'); /* Đường dẫn & định dạng */
+    font-weight: normal;
+    font-style: normal;
+}
