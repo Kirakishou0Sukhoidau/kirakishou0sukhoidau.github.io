@@ -274,9 +274,9 @@ body.modal-open {
 }
 
 .chu-chay span {
-  font-size: 24px;
+  font-size: 1.5em;
   font-weight: bold;
-  margin: 0 4px;
+  margin: 0 3px;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
@@ -291,7 +291,7 @@ body.modal-open {
 /* Áp dụng hiệu ứng delay */
 
 .chu-chay span {
-  animation: delay-cycle 5s infinite ease-in-out;
+  animation: delay-cycle 12s infinite ease-in-out;
 }
 
 
