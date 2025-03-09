@@ -119,6 +119,7 @@ body {background-color: black;
 }*/
 
 #tong-load {
+  font-family: Markazi;
   margin-top: 50vh;
   text-align: center;
   overflow: hidden;
@@ -136,8 +137,9 @@ body {background-color: black;
 }
 
 #loading {
+  font-family: Markazi;
   list-style: none;
-    position: fixed;
+  position: fixed;
   margin-bottom: 2px;
   margin-right: 5px;
   pointer-events: none;
