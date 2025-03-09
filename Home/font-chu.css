@@ -9,7 +9,7 @@
 
 /*Markazi*/
 @font-face {
-    font-family: 'MarkaziText'; /* Đặt tên cho font */
+    font-family: 'Markazi'; /* Đặt tên cho font */
     src: url('../fonts/MarkaziText-VariableFont_wght.ttf') format('truetype'); /* Đường dẫn & định dạng */
     font-weight: 100 900;
     font-style: normal;
