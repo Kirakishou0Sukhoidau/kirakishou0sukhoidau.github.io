@@ -274,7 +274,6 @@ body.modal-open {
 }
 
 .chu-chay span {
-  font-size: 1.25rem;
   font-weight: bold;
   margin: 0 3px;
   opacity: 0;
@@ -306,7 +305,9 @@ h1, span, p {pointer-events: none;}
    width: 100%;
  }
 
-  .h11 {color: rgb(0,0,0);
+  .h11 {
+      font-size: 1.25em;
+      color: rgb(0,0,0);
      background-color: rgba(230, 230, 250, 0.5);
     width: max-content;
     border: 1px solid black;
