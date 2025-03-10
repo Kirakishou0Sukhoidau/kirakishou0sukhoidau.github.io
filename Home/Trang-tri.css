@@ -299,19 +299,22 @@ h1, span, p {pointer-events: none;}
      font-family: Markazi;
  }
 
-  .h11 {
-      font-size: 1.25em;
-      color: rgb(0,0,0);
+.h11 {color: #000000;
      background-color: rgba(230, 230, 250, 0.5);
     width: max-content;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+      border-bottom: 1px;
+      border-left: 1px;
+      border-right: 1px;
+      border-style: solid;
+      border-color: black;
+      font-size: 1.25em;
     text-align: center;
-    padding: 0.125em 0.125em 0em 0.125em;
+    padding: 0em 0em 0em 0em;
     margin: 0 auto;
-    font-family: Old English Five;
-    /*font-family: Pinyon Script;*/
+     font-family: Old English Five;      
+   /* font-family: Pinyon Script; */
     }
-
   /* .Hello {border: 1px solid black;
      color: purple; 
      display: inline;*/
