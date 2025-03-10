@@ -221,17 +221,6 @@ body.modal-open {
     overflow: hidden;
 }
 
- 
-  h1 {color: rgb(0,0,0);
-   /* margin-top: 7%;*/
-    /*margin-bottom: 9px;*/
-    width: 100%;
-    margin: 0px;
-    font-weight: bold;
-    font-size: 1.8rem;
-    text-align: center;
-    padding: 0.1875em;
-  }
 
 .video {
   width: 100%;
@@ -299,12 +288,15 @@ body.modal-open {
 h1, span, p {pointer-events: none;}
 
   
- .hatm {margin: 0 auto;
-   padding: 0.1875em 8px 0.1875em 8px;
-      background-color: rgba(230, 230, 250, 0.5);
+ .hatm {
+     color: #000000;
+     font-size: 2em;
+    font-weight: 900;
+    text-align: center;
+   margin: 0em 0.3125em 0em 0.3125em;
+   background-color: rgba(230, 230, 250, 0.5);
     border: 1px solid black;
-        font-family: Arial;
-   width: 100%;
+     font-family: Markazi;
  }
 
   .h11 {
