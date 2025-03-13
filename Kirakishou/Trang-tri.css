@@ -448,6 +448,15 @@ input:after:first-child {
     transition: all 0.3s ease-in-out;
         }
 
+#surl select {
+    width: 27%;
+    background-color: pink;
+    padding: 0 0.125em;
+    text-align: center;
+    border: 1px solid black;
+    transition: all 0.3s ease-in-out;
+}
+
 
 
 #tools {
