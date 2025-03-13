@@ -41,13 +41,11 @@
   </head>
 <header>
     
-
 </header>
 
 
 <body>
-  
-  
+    
  
   <div id="wrapper" class="hidden">
           <div id="backdrop">
@@ -141,7 +139,7 @@
           <label id="lb">Nhập để tìm kiếm</label>
              
   <br/>
-  <button id="submit-search" type="submit">Tìm kiếm</button>
+  <button id="submit-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm</button>
   <select id="search-engine-search" onchange="adjustWidth(this)">
 
           <option value="default"><--Select Search Engine--></option>
@@ -172,7 +170,7 @@
           <option value="wikipedia">Wikipedia</option>
           <option value="bing">Bing</option> 
        </select>
-             <button id = "reset" class="reset">Xoá hết</button>
+             <button id = "reset" class="reset"><i class="fa-solid fa-eraser"></i>Xoá hết</button>
           
     </form>
      </div>
@@ -182,14 +180,14 @@
   <input id="input-quet" type="text" name="query" required>
         <label id="lb2">Nhập link để quét</label>
   <br/>
-  <button id="submit-quet" type="submit">Kiểm tra</button>
+  <button id="submit-quet" type="submit"><i class="fa-solid fa-shield-quartered"></i>Kiểm tra</button>
   <select id="search-engine-quet" onchange="adjustWidth(this)">
     <option value="googlev">Google</option>
    <option value="checkscam">Check website</option>
     <option value="scamadviser">Scamadviser</option>
     <option value="urlscanio" selected>Scan web</option>    
   </select>
-        <button id = "reset" class="reset2">Xoá hết</button>
+        <button id = "reset" class="reset2"><i class="fa-solid fa-eraser"></i>Xoá hết</button>
 
  </form>
       </div>
@@ -461,8 +459,8 @@
            <form>          
              <input type="text" id="tag-input" placeholder="Nhập...">
                           <div id="suggestions"></div>
-<button type="button" onclick="timAnhMoi()">Tìm ảnh</button>
-              <button type="button" class="resetnp">Xóa</button>
+<button type="button" onclick="timAnhMoi()"><i class="fa-regular fa-image"></i>Tìm ảnh</button>
+              <button type="button" class="resetnp"><i class="fa-solid fa-eraser"></i>Xóa</button>
            </form>
 <div id="khu-xem-anh"></div>
 
@@ -471,15 +469,15 @@
     </div>
     
     <div style="display:flex;">
-    <button type="button" id="previous">previous</button>
+    <button type="button" id="previous"><i class="fa-regular fa-backward"></i></button>
 
       <form>
     <input id="select-page">
     <button type="button" id="skip-pages">Tới</button>
-    <button type="button" class="resetnp2">Xóa</button>
+    <button type="button" class="resetnp2"><i class="fa-solid fa-eraser"></i>Xóa</button>
     </form>
       
-    <button type="button" id="nexts">next</button>
+    <button type="button" id="nexts"><i class="fa-regular fa-forward"></i></button>
     </div>
            
         <!--h6 style="text-align: center; font-weight: bold; font-size: 1.2rem;">Thông tin trang web</h6>
