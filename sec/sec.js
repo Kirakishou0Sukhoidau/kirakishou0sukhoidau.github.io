@@ -18,7 +18,7 @@ function giaiPT() {
         document.getElementById("ketQuaX").innerText = "Không phù hợp";
         document.getElementById("ketQuaY").innerText = "";
     } else {
-        document.getElementById("ketQuaX").innerText = `Banish 2 thẻ XYZ rank ${x}`;
-        document.getElementById("ketQuaY").innerText = `Banish 1 quái thú Fusion ${y} sao`;
+        document.getElementById("ketQuaX").innerText = `Banish 2 quái xyz rank ${x}`;
+        document.getElementById("ketQuaY").innerText = `Banish 1 quái fusion level ${y}`;
     }
 }
