@@ -641,6 +641,38 @@ modalBg.addEventListener('click', () => {
 
 
 
+//tool-va-feeds
+document.addEventListener("DOMContentLoaded", function () {
+    let tools2 = document.getElementById("tools2");
+    let tools3 = document.getElementById("tools3");
+    let appAndroid = document.getElementById("app-android");
+
+    function toggleHiddenClass() {
+        let isTools2Visible = tools2 && window.getComputedStyle(tools2).display === "block";
+        let isTools3Visible = tools3 && window.getComputedStyle(tools3).display === "block";
+
+        if (isTools2Visible || isTools3Visible) {
+            appAndroid.classList.add("hidden");
+        } else {
+            appAndroid.classList.remove("hidden");
+        }
+    }
+
+    // Gọi hàm ngay khi tải trang
+    toggleHiddenClass();
+
+    // Dùng MutationObserver để phát hiện thay đổi `display`
+    const observer = new MutationObserver(toggleHiddenClass);
+    observer.observe(tools2, { attributes: true, attributeFilter: ["style"] });
+    observer.observe(tools3, { attributes: true, attributeFilter: ["style"] });
+
+    // Nếu cần vẫn có thể dùng resize, nhưng tránh lạm dụng
+    window.addEventListener("resize", toggleHiddenClass);
+});
+
+
+
+
 /*
 const ulBq = document.querySelector('.ul-bq');
 const muiTenLen = document.querySelector('.mui-ten-len');
