@@ -55,8 +55,6 @@ document.addEventListener('keydown', function(event) {
 
 
 
-
-
 //toan-man-hinh
 const fullScreenButton1 = document.getElementById('thu-phong');
 const fullScreenButton2 = document.getElementById("dongy"); // Thêm nút thứ hai
@@ -488,9 +486,6 @@ copyButton.addEventListener('click', function() {
 
 
 
-
-        
-
 //back-to-top
 const backToTopBtn = document.getElementById("back-to-top");
 
@@ -732,6 +727,41 @@ hienBgt.addEventListener('click', function() {
   const textDiv = this.closest('.ul-bq'); // Tìm div #text gần nhất
   textDiv.querySelector('p').style.display = 'none'; // Ẩn thẻ p trong #text
 });*/
+
+
+
+//suggest-input
+       const searchInputsugGg = document.getElementById("input-search");
+        const suggestionsGgBox = document.getElementById("suggestions-gg");
+
+        searchInputsugGg.addEventListener("input", async () => {
+            const queryinputsug = searchInputsugGg.value.trim();
+            if (queryinputsug.length === 0) {
+                suggestionsGgBox.innerHTML = "";
+                return;
+            }
+
+            const responsesuggg = await fetch(`https://suggestqueries.google.com/complete/search?client=firefox&q=${queryinputsug}`);
+            const datasuggg = await responsesuggg.json();
+            const suggestionsGg = datasuggg[1];
+
+            suggestionsGgBox.innerHTML = suggestionsGg.map(s => 
+                `<div class="suggestion-gg-item">${s}</div>`
+            ).join("");
+
+            document.querySelectorAll(".suggestion-gg-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    searchInputsugGg.value = item.textContent;
+                    suggestionsGgBox.innerHTML = "";
+                });
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!searchInputsugGg.contains(e.target)) {
+                suggestionsGgBox.innerHTML = "";
+            }
+        });
 
 
 
