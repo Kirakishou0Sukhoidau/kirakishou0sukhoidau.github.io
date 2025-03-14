@@ -392,6 +392,7 @@ transition: all 0s ease-in-out;
 
 
 #suggestions-gg {
+    margin-top: 3.5px;
     max-width: 300px;
     width: max-content;
     margin: 0 auto;
