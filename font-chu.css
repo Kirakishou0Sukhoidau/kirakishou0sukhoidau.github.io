@@ -1,0 +1,26 @@
+/*Old English Five*/
+@font-face {
+    font-family: 'Old English Five'; /* Đặt tên cho font */
+    src: url('/fonts/OldEnglishFive.ttf') format('truetype'); /* Đường dẫn & định dạng */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*Markazi*/
+@font-face {
+    font-family: 'Markazi'; /* Đặt tên cho font */
+    src: url('/fonts/MarkaziText-VariableFont_wght.ttf') format('truetype'); /* Đường dẫn & định dạng */
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Needleteeth Creepy'; /* Đặt tên cho font */
+    src: url('/font/needleteethcreepy.ttf') format('truetype'); /* Đường dẫn & định dạng */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
