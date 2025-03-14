@@ -741,7 +741,7 @@ hienBgt.addEventListener('click', function() {
                 return;
             }
 
-            const responsesuggg = await fetch(`https://suggestqueries.google.com/complete/search?client=firefox&q=${queryinputsug}`);
+            const responsesuggg = await fetch(`https://suggestqueries.google.com/complete/search?client=chrome&q=${queryinputsug}`);
             const datasuggg = await responsesuggg.json();
             const suggestionsGg = datasuggg[1];
 
