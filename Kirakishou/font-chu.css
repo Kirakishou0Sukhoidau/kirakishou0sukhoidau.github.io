@@ -15,4 +15,11 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Needleteeth Creepy'; /* Đặt tên cho font */
+    src: url('../fonts/needleteethcreepy.ttf') format('truetype'); /* Đường dẫn & định dạng */
+    font-weight: normal;
+    font-style: normal;
+}
+
 
