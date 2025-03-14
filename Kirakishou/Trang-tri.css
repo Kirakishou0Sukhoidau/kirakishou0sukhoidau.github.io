@@ -389,6 +389,30 @@ transition: all 0s ease-in-out;
   position: relative;
 }
 
+
+
+#suggestions-gg {
+    max-width: 300px;
+    width: max-content;
+    margin: 0 auto;
+    position: absolute;
+    background: white;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.suggestion-gg-item {
+            padding: 5px;
+        }
+
+.suggestion-gg-item:hover {
+            background: #f0f0f0;
+        }
+
+
+
+
 input::after {
   content: attr(value);
   color: black;
