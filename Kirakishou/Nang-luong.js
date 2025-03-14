@@ -152,7 +152,7 @@ function updateBackground() {
   } else if (screen.width >= 740) {
     body.style.backgroundImage = "url(../image/bg2nmp2.webp)";
   } else if (screen.width < 740) {
-    body.style.backgroundImage = "url(../image/img-HinaHdt1.webp)";
+    body.style.backgroundImage = "url(../image/img-HinaHdt.webp)";
   } else {
     body.style.backgroundColor = "black";
   }
