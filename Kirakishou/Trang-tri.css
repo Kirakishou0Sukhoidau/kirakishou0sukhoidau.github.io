@@ -454,10 +454,15 @@ input:after:first-child {
       
     }
       
-    .img {margin: 0 auto ; height: 3cm; display:block;}
+    .img {
+margin: 0 auto; 
+height: 3cm; 
+display: block;
+}
 
 
-  button {width: max-content;
+  button {
+    width: max-content;
     background-color: pink;
     padding: 0 0.125em;
     border: 2px solid black;
@@ -508,6 +513,8 @@ input:after:first-child {
 
      ul.nnp {
       display: none;
+      overflow: hidden;
+      margin: 0 auto;
       margin-bottom: 10px;
       padding: 0.3125em 0.625em;
       border: 1px solid #ccc;
@@ -519,9 +526,8 @@ input:after:first-child {
 
     .nnp li {
       margin-bottom: 5px;
-      
       width: 100%;
-       height: auto;
+      height: auto;
     }
 
 
@@ -533,8 +539,8 @@ input:after:first-child {
     }
 
     #cover-feed {
-        margin: 0 auto;
-        text-align: center;
+    margin: 0 auto;
+    text-align: center;
     width: 95vw;
     height: 93vh; /* Chiều cao 80% màn hình */
     border: 2px solid #ccc;
@@ -552,7 +558,11 @@ input:after:first-child {
 
 
         .post img { max-width: 100%; }
-        .loading { text-align: center; padding: 10px; font-weight: bold; }
+ .loading {
+text-align: center; 
+padding: 10px; 
+font-weight: bold;
+}
     
     .post {
     width: 100%; /* Full width */
