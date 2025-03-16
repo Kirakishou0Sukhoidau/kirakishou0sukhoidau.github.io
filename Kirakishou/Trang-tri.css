@@ -51,8 +51,6 @@ header {z-index: +10;}
 }
 
 
-
-
 #ipc {background: white;
       border: 1px solid black;
       margin: 0 auto;
@@ -509,8 +507,6 @@ display: block;
       transition: 1s ease-in-out;
        }
 
-   
-
      ul.nnp {
       display: none;
       overflow: hidden;
@@ -529,7 +525,6 @@ display: block;
       width: 100%;
       height: auto;
     }
-
 
     .nnp li a {
       background-color: palevioletred;
@@ -785,9 +780,11 @@ font-weight: bold;
 
 
 .app-android {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid; /* Chuyển từ flex sang grid */
+  grid-template-columns: repeat(3, 1fr); /* Tạo 3 cột có kích thước bằng nhau */
+  gap: 5px; /* Khoảng cách giữa các phần tử */
+  justify-content: center; /* Canh giữa nếu cần */
+
 }
 
 
@@ -890,10 +887,6 @@ ul {list-style: none;}
 
 
 
-
-
-
-
  .search #input-search:focus {
    border: 1px solid purple;
  }
@@ -919,10 +912,6 @@ ul {list-style: none;}
                    border: 1px solid white;
                    
  }
-
-
-       
-   
 
 
 .search2 #input-quet:focus+#lb2, .search2 #input-quet:valid+#lb2 { 
