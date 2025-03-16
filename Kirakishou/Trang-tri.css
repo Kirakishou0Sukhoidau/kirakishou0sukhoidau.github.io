@@ -489,7 +489,7 @@ display: block;
 
 #tools {
   position: relative;
-  z-index: 2;
+  /*z-index: 2;*/
 } 
      
   
@@ -738,8 +738,7 @@ font-weight: bold;
               list-style: none;
               text-align: left;
               overflow-y: scroll;
-              z-index: 2;
-         
+              z-index: 2;       
 }
 
 
