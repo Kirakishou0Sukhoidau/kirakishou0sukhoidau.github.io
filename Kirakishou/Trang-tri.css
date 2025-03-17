@@ -360,9 +360,7 @@ h1, span, p {pointer-events: none;}
   #toolg {/*margin-left: -65px;*/
          text-align: left;
   }
-   #toggle-tools, #toggle-tools2,
-    #toggle-tools3, #toggle-delta
-  {
+   #toolg button, #toggle-delta {
     width: 26px;
     height: 26px;
     border: 1px solid black;
