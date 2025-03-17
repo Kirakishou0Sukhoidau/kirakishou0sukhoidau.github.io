@@ -550,7 +550,7 @@ display: block;
 }
 
         #trinh-xem {
-            height: 100%;
+            height: 90vh;
             overflow-y: auto; /* Chỉ cuộn dọc */
             background-color: white;
             
