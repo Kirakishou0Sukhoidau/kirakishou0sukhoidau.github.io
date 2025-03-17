@@ -185,9 +185,9 @@
   <button id="submit-quet" type="submit"><i class="fa-solid fa-shield-quartered"></i>Kiểm tra</button>
   <select id="search-engine-quet" onchange="adjustWidth(this)">
     <option value="googlev">Google</option>
-   <option value="checkscam">Check website</option>
+   <option value="checkscam" selected>Check website</option>
     <option value="scamadviser">Scamadviser</option>
-    <option value="urlscanio" selected>Scan web</option>    
+    <option value="urlscanio">Scan web</option>    
   </select>
         <button id = "reset" class="reset2"><i class="fa-solid fa-eraser"></i>Xóa</button>
 
@@ -434,12 +434,18 @@
 </div>
 
 <div id="tools4" style="display: none;">
-  <h2 class="h2-p"></h2>
+  <h2 class="h2-p">Media</h2>
 
-  <h4 id="h4-bg3" class="bgb-tw">List Books</h4>
+    <h3>Chọn loại nội dung hiển thị:</h3>
+    <label><input type="radio" name="type" value="all" checked> Tất cả</label>
+    <label><input type="radio" name="type" value="image"> Chỉ ảnh</label>
+    <label><input type="radio" name="type" value="video"> Chỉ video</label>
+
+    <div id="trinh-xem"></div>
+
+  <!--h4 id="h4-bg3" class="bgb-tw">List Books</h4>
     <ul class="nnp">
-
-     </ul>
+     </ul-->
 </div>
 
 <div id="tools5" style="display: none;">
