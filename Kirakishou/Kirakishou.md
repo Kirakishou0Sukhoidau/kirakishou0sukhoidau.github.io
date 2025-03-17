@@ -25,8 +25,7 @@ Toàn bộ mã nguồn của trang web thuộc sở hữu của tác giả và �
 Trang web có thể được truy cập tại:  
 <a href="https://kirakishou0sukhoidau.github.io/Kirakishou" style="color: blue;">Book of the Gate </a>
 
-
-<video src="https://video.twimg.com/ext_tw_video/1897340624971677696/pu/vid/avc1/540x960/umPPx3F8OjcvhgLg.mp4" type="video/mp4" loop  controls autoplay></video>
+![](https://video.twimg.com/ext_tw_video/1897340624971677696/pu/vid/avc1/540x960/umPPx3F8OjcvhgLg.mp4)
 
 <script>
   alert("JS hoạt động trong Markdown!");
