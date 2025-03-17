@@ -545,6 +545,18 @@ display: block;
     height: 100%;
 }
 
+        #trinh-xem {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+   #trinh-xem img,  #trinh-xem video {
+            width: 150px;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
 
 .post img { max-width: 100%; }
 .loading {
