@@ -7,12 +7,14 @@
             animation: mouse-fly 1.5s ease-out forwards; /* Áp dụng animation bay lên */
         }
 
-.an {display: none;
-  background-color: white;
+.an {
+   display: none;
+   background-color: white;
    background-size: 100% 100%;
    z-index: 10;
 }
-.an-hien {/*background-color: black;*/
+.an-hien {
+/*background-color: black;*/
   position: fixed;
   bottom: 5px;
  /* color: white;*/
@@ -21,13 +23,14 @@
 }
 
 
-h2 {font-size: 1.5em;
+h2 {
+    font-size: 1.5em;
     font-weight: bold;
  }
 header {z-index: +10;}
 
-.head{
-       color: black;
+.head {
+  color: black;
   background: pink;
   right: 0px;
   display: block;
@@ -35,7 +38,8 @@ header {z-index: +10;}
 }
 
 
-#thccth {display: flex;
+#thccth {
+  display: flex;
   flex-direction: column;
 }
 
@@ -51,7 +55,8 @@ header {z-index: +10;}
 }
 
 
-#ipc {background: white;
+#ipc {
+      background: white;
       border: 1px solid black;
       margin: 0 auto;
       padding: 0.625em;
@@ -102,7 +107,8 @@ body {background-color: black;
 }
 
 
-/*#load-animation {border: 5px dashed white;
+/*#load-animation {
+  border: 5px dashed white;
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -129,8 +135,8 @@ body {background-color: black;
    width: max-content;
 }
 
-#dtx {text-align: center;
-  
+#dtx {
+  text-align: center;
   width: 100%;
 }
 
@@ -161,9 +167,9 @@ body {background-color: black;
 }
 
 
-#hien-bg img {width: 100%;
+#hien-bg img {
+  width: 100%;
   height: 100%;
-  
 }
 
 
@@ -287,10 +293,10 @@ h1, span, p {pointer-events: none;}
 
   
  .hatm {
-     color: #000000;
-     font-size: 2em;
-    font-weight: 900;
-    text-align: center;
+   color: #000000;
+   font-size: 2em;
+   font-weight: 900;
+   text-align: center;
    margin: 0em 0.3125em 0em 0.3125em;
    background-color: rgba(230, 230, 250, 0.5);
     border: 1px solid black;
@@ -387,8 +393,6 @@ transition: all 0s ease-in-out;
   position: relative;
 }
 
-
-
 #suggestions-gg {
     margin-top: 3.5px;
     max-width: 300px;
@@ -409,9 +413,6 @@ transition: all 0s ease-in-out;
             background: #f0f0f0;
         }
 
-
-
-
 input::after {
   content: attr(value);
   color: black;
@@ -427,7 +428,6 @@ input:after:first-child {
   color: red;
 }
 
-
        input {
       color: white;
       background-color: black;
@@ -440,8 +440,6 @@ input:after:first-child {
          outline: none;
        }
  
-
-   
     #reset {color: blueviolet;
             background: lavender;
             border: 2px solid black;
@@ -492,7 +490,6 @@ display: block;
   /*z-index: 2;*/
 } 
      
-  
     h4.bgb-tw {
       background-color: black;
       color: white;
@@ -551,9 +548,8 @@ display: block;
 }
 
 
-
-        .post img { max-width: 100%; }
- .loading {
+.post img { max-width: 100%; }
+.loading {
 text-align: center; 
 padding: 10px; 
 font-weight: bold;
@@ -734,7 +730,7 @@ font-weight: bold;
               width: 100%;
           /*    pointer-events: none;*/
               border: 1px solid aqua;
-               position: fixed;
+              position: fixed;
               list-style: none;
               text-align: left;
               overflow-y: scroll;
@@ -760,8 +756,9 @@ font-weight: bold;
   background-color: white;
   font-weight: bold;
   color: black;
-  margin: 0px 0.625em 0px 0.625em;
-  width: 6.25em;
+ /* margin: 0px 0.625em 0px 0.625em;*/
+ /* width: 6.25em;*/
+  width: 100%; 
   text-align: center;
   pointer-events: none;
 }
@@ -781,7 +778,7 @@ font-weight: bold;
 .app-android {
   display: grid; /* Chuyển từ flex sang grid */
   grid-template-columns: repeat(3, 1fr); /* Tạo 3 cột có kích thước bằng nhau */
-  gap: 5px; /* Khoảng cách giữa các phần tử */
+  gap: 3.5px; /* Khoảng cách giữa các phần tử */
   justify-content: center; /* Canh giữa nếu cần */
 
 }
