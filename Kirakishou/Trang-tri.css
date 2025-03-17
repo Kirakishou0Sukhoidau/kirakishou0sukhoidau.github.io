@@ -437,6 +437,10 @@ input:after:first-child {
          border: 1.5px solid rgb(135, 206, 250);
          outline: none;
        }
+
+input[type="radio"]::after {
+    content: ""; /* Không hiển thị value */
+}
  
     #reset {color: blueviolet;
             background: lavender;
