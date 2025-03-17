@@ -461,8 +461,6 @@ switchButton.addEventListener('click', () => {
 
 
 
-
-
 //copy-box
 const copyBox = document.getElementById('copy-box'); // Lấy phần tử p có id "copy-box"
 const copyButton = document.getElementById('copy_box'); // Lấy phần tử button có id "copy_box"
@@ -633,6 +631,60 @@ modalBg.addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 });
 
+
+
+let repoOwner = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
+let repoName = "kirakishou0sukhoidau.github.io";  // Tên repository
+let folders = ["image", "video", "logo"]; // Các thư mục cần lấy dữ liệu
+let contentContainer = document.getElementById("trinh-xem");
+
+// Hàm lấy nội dung từ GitHub API
+async function fetchContent() {
+    contentContainer.innerHTML = ""; // Xóa nội dung cũ trước khi cập nhật
+    let selectedType = document.querySelector('input[name="type"]:checked').value;
+
+    for (let folder of folders) {
+        let apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folder}`;
+
+        try {
+            let response = await fetch(apiUrl);
+            let data = await response.json();
+
+            data.forEach(file => {
+                let fileType = "";
+                if (file.name.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileType = "image";
+                if (file.name.match(/\.(mp4|webm|ogg)$/)) fileType = "video";
+
+                if (selectedType === "all" || selectedType === fileType) {
+                    let fullPath = `${folder}/${file.name}`; // Đường dẫn đầy đủ
+
+                    if (fileType === "image") {
+                        let img = document.createElement("img");
+                        img.src = file.download_url;
+                        img.title = fullPath; // Hiện đường dẫn khi nhấn giữ
+                        contentContainer.appendChild(img);
+                    } else if (fileType === "video") {
+                        let video = document.createElement("video");
+                        video.src = file.download_url;
+                        video.controls = true;
+                        video.title = fullPath; // Hiện đường dẫn khi nhấn giữ
+                        contentContainer.appendChild(video);
+                    }
+                }
+            });
+        } catch (error) {
+            console.error(`Lỗi tải dữ liệu từ thư mục ${folder}:`, error);
+        }
+    }
+}
+
+// Tải nội dung ban đầu
+fetchContent();
+
+// Lắng nghe sự kiện thay đổi radio để cập nhật nội dung hiển thị
+document.querySelectorAll('input[name="type"]').forEach(radio => {
+    radio.addEventListener("change", fetchContent);
+});
 
 
 
