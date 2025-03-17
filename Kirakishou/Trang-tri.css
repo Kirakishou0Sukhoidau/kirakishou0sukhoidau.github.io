@@ -551,7 +551,7 @@ display: block;
 
         #trinh-xem {
             height: 90vh;
-            overflow-y: auto; /* Chỉ cuộn dọc */
+            overflow-y: scroll /* Chỉ cuộn dọc */
             background-color: white;
             
             width: 100%;
