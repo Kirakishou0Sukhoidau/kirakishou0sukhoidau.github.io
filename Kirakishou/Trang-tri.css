@@ -411,7 +411,7 @@ transition: all 0s ease-in-out;
             background: #f0f0f0;
         }
 
-input::after {
+/*input::after {
   content: attr(value);
   color: black;
   position: absolute;
@@ -424,7 +424,7 @@ input::after {
 
 input:after:first-child {
   color: red;
-}
+}*/
 
        input {
       color: white;
@@ -550,8 +550,12 @@ display: block;
 }
 
         #trinh-xem {
+            height: 95%;
+            overflow-y: auto; /* Chỉ cuộn dọc */
             background-color: white;
-            width: 99%;
+            
+            width: 100%;
+            text-align: center;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
