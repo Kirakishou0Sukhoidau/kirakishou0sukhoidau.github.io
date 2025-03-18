@@ -336,7 +336,6 @@ h1, span, p {pointer-events: none;}
  }*/
 
 
-
    .Hello {border: 1px solid black;
      color: purple; 
      width: max-content;
@@ -360,6 +359,7 @@ h1, span, p {pointer-events: none;}
   #toolg {/*margin-left: -65px;*/
          text-align: left;
   }
+
    #toolg button, #toggle-delta {
     width: 26px;
     height: 26px;
@@ -565,6 +565,25 @@ display: block;
             border: 1px solid #ddd;
             padding: 5px;
         }
+
+        #tt-trang a {
+            font-weight: bold;
+        }
+       #tt-trang a:hover {
+            text-decoration: underline;
+        }
+      /* #tt-trang .underline {
+            text-decoration: underline;
+        }*/
+    
+    #tt-trang h2 {
+        margin-top: 10px;
+    }
+    
+   #tt-trang ol {
+    list-style: decimal; /* Hiển thị số thứ tự */
+    padding-left: 25px; /* Đẩy nội dung vào một chút để đẹp hơn */
+}
 
 
 .post img { max-width: 100%; }
