@@ -37,3 +37,34 @@ document.addEventListener("DOMContentLoaded", function() {
         adjustWidth(document.getElementById("search-engine-search"));
     }, 100); // Tùy chỉnh thời gian delay nếu cần
 });
+
+
+
+//sap-xep-az
+document.addEventListener("DOMContentLoaded", function () {
+    sortElements(); // Sắp xếp khi trang tải
+
+    // Quan sát nếu có phần tử mới được thêm class "A-z"
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === "attributes" && mutation.attributeName === "class") {
+                if (mutation.target.classList.contains("A-z")) {
+                    sortElements(); // Sắp xếp lại khi có thay đổi
+                }
+            }
+        });
+    });
+
+    document.querySelectorAll(".A-z").forEach((el) => {
+        observer.observe(el, { attributes: true });
+    });
+
+    function sortElements() {
+        document.querySelectorAll(".A-z").forEach((parent) => {
+            let items = Array.from(parent.children);
+            items.sort((a, b) => a.textContent.trim().localeCompare(b.textContent.trim()));
+
+            items.forEach((item) => parent.appendChild(item)); // Sắp xếp lại thứ tự trong DOM
+        });
+    }
+});
