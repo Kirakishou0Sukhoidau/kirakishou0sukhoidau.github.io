@@ -561,6 +561,8 @@ display: block;
 
    #trinh-xem img,  #trinh-xem video {
             width: 150px;
+            margin: 0 auto;
+            text-align: center;
             border: 1px solid #ddd;
             padding: 5px;
         }
