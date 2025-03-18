@@ -552,7 +552,6 @@ display: block;
         #trinh-xem {
             height: 100%;
             background-color: white;
-            
             width: 100%;
             text-align: center;
             display: flex;
@@ -568,13 +567,15 @@ display: block;
 
         #tt-trang {
             width: 100%;
-            background-color: white:;
+            background-color: white;
         }
 
 
         #tt-trang video {
-            width: 90%;
-            margin: 5px;
+            text-align: center;
+            width: 100%;
+            padding: 5px;
+            margin: 5px auto;
         }
 
         #tt-trang a {
