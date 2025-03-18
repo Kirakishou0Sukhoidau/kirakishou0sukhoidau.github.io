@@ -566,8 +566,20 @@ display: block;
             padding: 5px;
         }
 
+        #tt-trang {
+            width: 100%;
+            background-color: white:;
+        }
+
+
+        #tt-trang video {
+            width: 90%;
+            margin: 5px;
+        }
+
         #tt-trang a {
             font-weight: bold;
+            pointer-events: auto;
         }
        #tt-trang a:hover {
             text-decoration: underline;
