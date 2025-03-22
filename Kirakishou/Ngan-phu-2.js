@@ -6,13 +6,13 @@ function layAnh() {
     document.getElementById("select-page").value = currentPage;
 
     // API XML (rule34.xxx)
-    const apiRule34Xxx = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=25&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`;
+    const apiRule34Xxx = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=50&json=1&tags=${encodeURIComponent(tag)}&pid=${currentPage}`;
 
     // API JSON (Danbooru) - Lấy cả rating:s và rating:q, chỉ gọi nếu tags <= 2
     let apiDanbooruUrl = null;
     const tagsArray = tag.split(" ");
     if (tagsArray.length <= 2) {
-        apiDanbooruUrl = `https://danbooru.donmai.us/posts.json?tags=${encodeURIComponent(tag)} (rating:e OR rating:q)&limit=25&page=${currentPage + 1}`;
+        apiDanbooruUrl = `https://danbooru.donmai.us/posts.json?tags=${encodeURIComponent(tag)} (rating:e OR rating:q)&limit=50&page=${currentPage + 1}`;
     }
 
     console.log("Fetching:", apiRule34Xxx);
