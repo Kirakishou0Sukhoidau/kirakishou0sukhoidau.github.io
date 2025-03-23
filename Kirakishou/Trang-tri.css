@@ -486,7 +486,6 @@ display: block;
 }
 
 
-
 #tools {
   position: relative;
   /*z-index: 2;*/
@@ -684,9 +683,11 @@ font-weight: bold;
  }
 
 
-.mui-ten-cheo {font-weight: bold; 
+.mui-ten-cheo {
+  font-weight: bold; 
   font-site: 1.2em; 
-  text-align: center;}
+  text-align: center;
+ }
 
 
 .modal-bg {
@@ -706,9 +707,9 @@ font-weight: bold;
 }
 
   .mui-ten-len {
-   background-image: url("../image/fairy2.webp");
-    opacity: 1;
-    background-size: 100% 100%;
+   background-image: url("../image/Hoshino-Hai.webp");
+   opacity: 1;
+   background-size: 100% 100%;
    bottom: 0px;
    right: 0px;
   /*  align-items: center;*/
