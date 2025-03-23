@@ -708,19 +708,20 @@ font-weight: bold;
 
   .mui-ten-len {
    background-image: url("../image/Hoshino-Hai.webp");
+   pointer-events: auto;
    opacity: 1;
    background-size: 100% 100%;
    bottom: 0px;
    right: 0px;
   /*  align-items: center;*/
    position: fixed;
-    height: 50px;
-    border-radius: 50%;
-    width: 50px;
-    padding: 0.625em;
-    z-index: 3;
-    border: 1px solid black;
-    transition: all 0.3s ease-in-out;
+   height: 50px;
+   border-radius: 50%;
+   width: 50px;
+   padding: 0.625em;
+   z-index: 3;
+   border: 1px solid black;
+   transition: all 0.3s ease-in-out;
  }
 
 
