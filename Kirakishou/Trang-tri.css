@@ -707,7 +707,7 @@ font-weight: bold;
 }
 
   .mui-ten-len {
-   background-image: url("../image/Hoshino-Hai.webp");
+  /* background-image: url("../image/Hoshino-Hai.webp"); */
    pointer-events: auto;
    opacity: 1;
    background-size: 100% 100%;
@@ -717,11 +717,17 @@ font-weight: bold;
    position: fixed;
    height: 50px;
    border-radius: 50%;
+   overflow: hidden;
    width: 50px;
-   padding: 0.625em;
+   /* padding: 0.625em; */
    z-index: 3;
    border: 1px solid black;
    transition: all 0.3s ease-in-out;
+ }
+
+ .mui-ten-len img {
+     width: 100%;
+     height: 100%;
  }
 
 
