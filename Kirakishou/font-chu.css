@@ -14,17 +14,23 @@
 }
 
 
-
-
-
 /*Markazi*/
 @font-face {
-    font-family: 'Markazi'; /* Đặt tên cho font */
+    font-family: 'Markazi ttf'; /* Đặt tên cho font */
     src: url('../fonts/MarkaziText-VariableFont_wght.ttf') format('truetype'); /* Đường dẫn & định dạng */
     font-weight: 100 900;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Markazi';
+    src: url('../fonts/MarkaziText-Regular.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+
+/*Needleteeth*/
 @font-face {
     font-family: 'Needleteeth Creepy'; /* Đặt tên cho font */
     src: url('../fonts/needleteethcreepy.ttf') format('truetype'); /* Đường dẫn & định dạng */
