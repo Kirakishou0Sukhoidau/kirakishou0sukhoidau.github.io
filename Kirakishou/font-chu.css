@@ -1,10 +1,20 @@
 /*Old English Five*/
 @font-face {
-    font-family: 'Old English Five'; /* Đặt tên cho font */
+    font-family: 'Old English Five ttf'; /* Đặt tên cho font */
     src: url('../fonts/OldEnglishFive.ttf') format('truetype'); /* Đường dẫn & định dạng */
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Old English Five'; /* Đặt tên cho font */
+    src: url('../fonts/OldEnglishFive.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 
 
 /*Markazi*/
