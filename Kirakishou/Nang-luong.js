@@ -54,7 +54,6 @@ document.addEventListener('keydown', function(event) {
 
 
 
-
 //toan-man-hinh
 const fullScreenButton1 = document.getElementById('thu-phong');
 const fullScreenButton2 = document.getElementById("dongy"); // Thêm nút thứ hai
@@ -71,8 +70,6 @@ const toggleFullScreen = () => {
 // Gán sự kiện click cho cả hai nút
 fullScreenButton1.addEventListener('click', toggleFullScreen);
 fullScreenButton2.addEventListener('click', toggleFullScreen);
-
-
 
 
 
@@ -181,8 +178,6 @@ AnHien.addEventListener("click", function() {
 
 
 
-
-
 //load
 
 //xoa-chu-input
@@ -275,7 +270,6 @@ setTimeout(() => {
 
 
 
-
 //bang thong bao
 //    alert ("Xin chào tiểu thư Kirakishou")
 /* var thongbao = document.getElementById("thongbao");
@@ -339,7 +333,6 @@ if (cookieDongy) {
 
 
 
-
 //doi-bg:
 
 const doiBgElement = document.getElementById("doi-bg");
@@ -397,8 +390,6 @@ function hienThiGioPhutGiay() {
 
 setInterval(hienThiNgayThangNam, 1000);
 setInterval(hienThiGioPhutGiay, 1000);
-
-
 
 
 
@@ -504,8 +495,6 @@ backToTopBtn.addEventListener("click", () => {
 
 
 
-
-  
 
  //ip
    const ipEl = document.getElementById("ip");
