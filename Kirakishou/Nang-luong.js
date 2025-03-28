@@ -622,9 +622,10 @@ modalBg.addEventListener('click', () => {
 
 
 
+//log-web
+
 let repoOwner = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
 let repoName = "kirakishou0sukhoidau.github.io";  // Tên repository
-let folders = ["image", "video", "logo"]; // Các thư mục cần lấy dữ liệu
 let contentContainer = document.getElementById("trinh-xem");
 
 // Hàm lấy nội dung từ GitHub API
@@ -632,38 +633,36 @@ async function fetchContent() {
     contentContainer.innerHTML = ""; // Xóa nội dung cũ trước khi cập nhật
     let selectedType = document.querySelector('input[name="type"]:checked').value;
 
-    for (let folder of folders) {
-        let apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folder}`;
+    let apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/main?recursive=1`;
 
-        try {
-            let response = await fetch(apiUrl);
-            let data = await response.json();
+    try {
+        let response = await fetch(apiUrl);
+        let data = await response.json();
 
-            data.forEach(file => {
-                let fileType = "";
-                if (file.name.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileType = "image";
-                if (file.name.match(/\.(mp4|webm|ogg)$/)) fileType = "video";
+        data.tree.forEach(file => {
+            let fileType = "";
+            if (file.path.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileType = "image";
+            if (file.path.match(/\.(mp4|webm|ogg)$/)) fileType = "video";
 
-                if (selectedType === "all" || selectedType === fileType) {
-                    let fullPath = `${folder}/${file.name}`; // Đường dẫn đầy đủ
+            if (selectedType === "all" || selectedType === fileType) {
+                let fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
 
-                    if (fileType === "image") {
-                        let img = document.createElement("img");
-                        img.src = file.download_url;
-                        img.title = fullPath; // Hiện đường dẫn khi nhấn giữ
-                        contentContainer.appendChild(img);
-                    } else if (fileType === "video") {
-                        let video = document.createElement("video");
-                        video.src = file.download_url;
-                        video.controls = true;
-                        video.title = fullPath; // Hiện đường dẫn khi nhấn giữ
-                        contentContainer.appendChild(video);
-                    }
+                if (fileType === "image") {
+                    let img = document.createElement("img");
+                    img.src = fileUrl;
+                    img.title = file.path; // Hiện đường dẫn khi nhấn giữ
+                    contentContainer.appendChild(img);
+                } else if (fileType === "video") {
+                    let video = document.createElement("video");
+                    video.src = fileUrl;
+                    video.controls = true;
+                    video.title = file.path; // Hiện đường dẫn khi nhấn giữ
+                    contentContainer.appendChild(video);
                 }
-            });
-        } catch (error) {
-            console.error(`Lỗi tải dữ liệu từ thư mục ${folder}:`, error);
-        }
+            }
+        });
+    } catch (error) {
+        console.error(`Lỗi tải dữ liệu từ repository:`, error);
     }
 }
 
