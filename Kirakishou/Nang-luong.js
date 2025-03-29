@@ -659,11 +659,13 @@ async function fetchContentGithub() {
                 if (fileTypeGithub === "imageGithub") {
                     let imgGithub = document.createElement("img");
                     imgGithub.src = fileUrl;
+                    imgGithub.title = file.path; // Hiển thị đường dẫn chi tiết
                     linkGithub.appendChild(imgGithub);
                 } else if (fileTypeGithub === "videoGithub") {
                     let videoGithub = document.createElement("video");
                     videoGithub.src = fileUrl;
                     videoGithub.controls = true;
+                    videoGithub.title = file.path; // Hiển thị đường dẫn chi tiết
                     linkGithub.appendChild(videoGithub);
                 }
 
