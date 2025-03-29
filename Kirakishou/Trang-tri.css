@@ -641,6 +641,7 @@ display: block;
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 100%;
+    background-color: white;
     max-width: 300px;
     box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
