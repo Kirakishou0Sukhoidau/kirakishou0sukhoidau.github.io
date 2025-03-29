@@ -604,8 +604,9 @@ display: block;
 }
 
 
-/* ---------- Cấu trúc tổng quát ---------- */
+
 #ban-upadate {
+    color: black;
     background-color: #f4f4f4;
     padding: 20px;
     width: 100%;
@@ -622,7 +623,7 @@ display: block;
     margin-bottom: 20px;
 }
 
-/* ---------- Bộ lọc với Flexbox ---------- */
+
 #ban-upadate #filters {
     display: flex;
     flex-wrap: wrap;
@@ -641,6 +642,7 @@ display: block;
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 100%;
+    color: black;
     background-color: white;
     max-width: 300px;
     box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
@@ -660,7 +662,7 @@ display: block;
     box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.4);
 }
 
-/* ---------- Danh sách log ---------- */
+
 #ban-upadate #log-list {
     list-style: none;
     padding: 0;
@@ -686,7 +688,7 @@ display: block;
     cursor: pointer;
 }
 
-/* ---------- Phân trang ---------- */
+
 #ban-upadate .pagination {
     text-align: center;
     margin-top: 20px;
