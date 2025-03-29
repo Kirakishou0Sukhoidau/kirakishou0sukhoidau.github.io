@@ -684,116 +684,116 @@ document.querySelectorAll('input[name="type"]').forEach(radio => {
 
 //ban-va
 
-        let allCommits = [];
-        let currentPage = 1;
-        const commitsPerPage = 10;
+ let allCommitsLogGithub = [];
+let currentPageLogGithub = 1;
+const commitsPerPageLogGithub = 10;
 
-        async function fetchAllCommits(owner, repo) {
-            let page = 1;
-            let commits = [];
-            let hasMoreCommits = true;
+async function fetchAllCommitsLogGithub(owner, repo) {
+    let pageLogGithub = 1;
+    let commitsLogGithub = [];
+    let hasMoreCommitsLogGithub = true;
 
-            while (hasMoreCommits) {
-                const url = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100&page=${page}`;
-                try {
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    if (data.length > 0) {
-                        commits = commits.concat(data);
-                        page++;
-                    } else {
-                        hasMoreCommits = false;
-                    }
-                } catch (error) {
-                    console.error("Lỗi tải commit:", error);
-                    hasMoreCommits = false;
-                }
+    while (hasMoreCommitsLogGithub) {
+        const urlLogGithub = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100&page=${pageLogGithub}`;
+        try {
+            const response = await fetch(urlLogGithub);
+            const data = await response.json();
+            if (data.length > 0) {
+                commitsLogGithub = commitsLogGithub.concat(data);
+                pageLogGithub++;
+            } else {
+                hasMoreCommitsLogGithub = false;
             }
-            return commits;
+        } catch (error) {
+            console.error("Lỗi tải commit logGithub:", error);
+            hasMoreCommitsLogGithub = false;
         }
+    }
+    return commitsLogGithub;
+}
 
-        async function loadGitHubCommits() {
-            const owner = "Kirakishou0sukhoidau"; // Thay bằng GitHub username
-            const repo = "kirakishou0sukhoidau.github.io"; // Thay bằng tên repository
-            const logList = document.getElementById("log-list");
-            const authorFilter = document.getElementById("authorFilter");
+async function loadGitHubCommitsLogGithub() {
+    const ownerLogGithub = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
+    const repoLogGithub = "kirakishou0sukhoidau.github.io"; // Tên repository
+    const logListLogGithub = document.getElementById("log-list-logGithub");
+    const authorFilterLogGithub = document.getElementById("authorFilterLogGithub");
 
-            allCommits = await fetchAllCommits(owner, repo);
+    allCommitsLogGithub = await fetchAllCommitsLogGithub(ownerLogGithub, repoLogGithub);
 
-            const authors = new Set();
-            allCommits.forEach(commit => authors.add(commit.commit.author.name));
+    const authorsLogGithub = new Set();
+    allCommitsLogGithub.forEach(commit => authorsLogGithub.add(commit.commit.author.name));
 
-            authors.forEach(author => {
-                const option = document.createElement("option");
-                option.value = author;
-                option.textContent = author;
-                authorFilter.appendChild(option);
-            });
+    authorsLogGithub.forEach(author => {
+        const optionLogGithub = document.createElement("option");
+        optionLogGithub.value = author;
+        optionLogGithub.textContent = author;
+        authorFilterLogGithub.appendChild(optionLogGithub);
+    });
 
-            filterCommits();
-        }
+    filterCommitsLogGithub();
+}
 
-        function filterCommits() {
-            const searchKeyword = document.getElementById("searchInput").value.toLowerCase();
-            const selectedAuthor = document.getElementById("authorFilter").value;
-            const startDate = document.getElementById("startDate").value;
-            const endDate = document.getElementById("endDate").value;
-            const sortOrder = document.getElementById("sortOrder").value;
-            const logList = document.getElementById("log-list");
+function filterCommitsLogGithub() {
+    const searchKeywordLogGithub = document.getElementById("searchInputLogGithub").value.toLowerCase();
+    const selectedAuthorLogGithub = document.getElementById("authorFilterLogGithub").value;
+    const startDateLogGithub = document.getElementById("startDateLogGithub").value;
+    const endDateLogGithub = document.getElementById("endDateLogGithub").value;
+    const sortOrderLogGithub = document.getElementById("sortOrderLogGithub").value;
+    const logListLogGithub = document.getElementById("log-list-logGithub");
 
-            let filteredCommits = allCommits.filter(commit => {
-                const author = commit.commit.author.name;
-                const message = commit.commit.message.toLowerCase();
-                const date = commit.commit.author.date;
+    let filteredCommitsLogGithub = allCommitsLogGithub.filter(commit => {
+        const authorLogGithub = commit.commit.author.name;
+        const messageLogGithub = commit.commit.message.toLowerCase();
+        const dateLogGithub = commit.commit.author.date;
 
-                return (
-                    (searchKeyword === "" || message.includes(searchKeyword)) &&
-                    (selectedAuthor === "" || author === selectedAuthor) &&
-                    (startDate === "" || new Date(date) >= new Date(startDate)) &&
-                    (endDate === "" || new Date(date) <= new Date(endDate))
-                );
-            });
+        return (
+            (searchKeywordLogGithub === "" || messageLogGithub.includes(searchKeywordLogGithub)) &&
+            (selectedAuthorLogGithub === "" || authorLogGithub === selectedAuthorLogGithub) &&
+            (startDateLogGithub === "" || new Date(dateLogGithub) >= new Date(startDateLogGithub)) &&
+            (endDateLogGithub === "" || new Date(dateLogGithub) <= new Date(endDateLogGithub))
+        );
+    });
 
-            if (sortOrder === "oldest") {
-                filteredCommits.reverse();
-            }
+    if (sortOrderLogGithub === "oldest") {
+        filteredCommitsLogGithub.reverse();
+    }
 
-            allFilteredCommits = filteredCommits;
-            currentPage = 1;
-            renderCommits();
-        }
+    allFilteredCommitsLogGithub = filteredCommitsLogGithub;
+    currentPageLogGithub = 1;
+    renderCommitsLogGithub();
+}
 
-        function renderCommits() {
-            const logList = document.getElementById("log-list");
-            logList.innerHTML = "";
+function renderCommitsLogGithub() {
+    const logListLogGithub = document.getElementById("log-list-logGithub");
+    logListLogGithub.innerHTML = "";
 
-            const start = (currentPage - 1) * commitsPerPage;
-            const end = start + commitsPerPage;
+    const startLogGithub = (currentPageLogGithub - 1) * commitsPerPageLogGithub;
+    const endLogGithub = startLogGithub + commitsPerPageLogGithub;
 
-            allFilteredCommits.slice(start, end).forEach(commit => {
-                const li = document.createElement("li");
-                li.classList.add("commit-item");
-                li.innerHTML = `<strong>${commit.commit.author.name}</strong> (${commit.commit.author.date}): 
-                ${commit.commit.message.replace(/(fix|bug|update|error)/gi, '<span class="highlight">$1</span>')}`;
-                li.onclick = () => window.open(commit.html_url, "_blank");
-                logList.appendChild(li);
-            });
+    allFilteredCommitsLogGithub.slice(startLogGithub, endLogGithub).forEach(commit => {
+        const liLogGithub = document.createElement("li");
+        liLogGithub.classList.add("commit-item");
+        liLogGithub.innerHTML = `<strong>${commit.commit.author.name}</strong> (${commit.commit.author.date}): 
+        ${commit.commit.message.replace(/(fix|bug|update|error)/gi, '<span class="highlight">$1</span>')}`;
+        liLogGithub.onclick = () => window.open(commit.html_url, "_blank");
+        logListLogGithub.appendChild(liLogGithub);
+    });
 
-            updatePaginationButtons();
-        }
+    updatePaginationButtonsLogGithub();
+}
 
-        function updatePaginationButtons() {
-            document.getElementById("prevPage").disabled = currentPage === 1;
-            document.getElementById("nextPage").disabled = currentPage * commitsPerPage >= allFilteredCommits.length;
-            document.getElementById("pageInfo").textContent = `${currentPage}/${Math.ceil(allFilteredCommits.length / commitsPerPage)}`;
-        }
+function updatePaginationButtonsLogGithub() {
+    document.getElementById("prevPageLogGithub").disabled = currentPageLogGithub === 1;
+    document.getElementById("nextPageLogGithub").disabled = currentPageLogGithub * commitsPerPageLogGithub >= allFilteredCommitsLogGithub.length;
+    document.getElementById("pageInfoLogGithub").textContent = `${currentPageLogGithub}/${Math.ceil(allFilteredCommitsLogGithub.length / commitsPerPageLogGithub)}`;
+}
 
-        function changePage(offset) {
-            currentPage += offset;
-            renderCommits();
-        }
+function changePageLogGithub(offset) {
+    currentPageLogGithub += offset;
+    renderCommitsLogGithub();
+}
 
-        loadGitHubCommits();
+loadGitHubCommitsLogGithub();
 
 
 
