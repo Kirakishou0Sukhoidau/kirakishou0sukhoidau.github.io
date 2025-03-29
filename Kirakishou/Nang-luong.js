@@ -624,7 +624,7 @@ modalBg.addEventListener('click', () => {
 
 //log-web
 
-let repoOwner = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
+let repoOwner = "kirakishou0sukhoidau"; // Tên GitHub của quý cô
 let repoName = "kirakishou0sukhoidau.github.io";  // Tên repository
 let contentContainer = document.getElementById("trinh-xem");
 
@@ -646,19 +646,25 @@ async function fetchContent() {
 
             if (selectedType === "all" || selectedType === fileType) {
                 let fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
+                
+                // Tạo link để mở tab mới
+                let link = document.createElement("a");
+                link.href = fileUrl;
+                link.target = "_blank";
+                link.title = file.path; // Hiện đường dẫn khi nhấn giữ
 
                 if (fileType === "image") {
                     let img = document.createElement("img");
                     img.src = fileUrl;
-                    img.title = file.path; // Hiện đường dẫn khi nhấn giữ
-                    contentContainer.appendChild(img);
+                    link.appendChild(img);
                 } else if (fileType === "video") {
                     let video = document.createElement("video");
                     video.src = fileUrl;
                     video.controls = true;
-                    video.title = file.path; // Hiện đường dẫn khi nhấn giữ
-                    contentContainer.appendChild(video);
+                    link.appendChild(video);
                 }
+
+                contentContainer.appendChild(link);
             }
         });
     } catch (error) {
