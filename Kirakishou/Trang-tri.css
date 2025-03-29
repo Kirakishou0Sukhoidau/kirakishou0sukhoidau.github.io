@@ -604,6 +604,117 @@ display: block;
 }
 
 
+/* ---------- Cấu trúc tổng quát ---------- */
+#ban-upadate {
+    background-color: #f4f4f4;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#ban-upadate h2 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ---------- Bộ lọc với Flexbox ---------- */
+#ban-upadate #filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#ban-upadate #filters input,
+#ban-upadate #filters select {
+    padding: 10px;
+    font-size: 0.9em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+#ban-upadate #filters input:hover,
+#ban-upadate #filters select:hover {
+    border-color: #007bff;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.2);
+}
+
+#ban-upadate #filters input:focus,
+#ban-upadate #filters select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.4);
+}
+
+/* ---------- Danh sách log ---------- */
+#ban-upadate #log-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#ban-upadate .commit-item {
+    padding: 15px;
+    background: #ffffff;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#ban-upadate .commit-item strong {
+    color: #007bff;
+    font-weight: 600;
+}
+
+#ban-upadate .commit-item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* ---------- Phân trang ---------- */
+#ban-upadate .pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#ban-upadate .pagination button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 5px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#ban-upadate .pagination button:hover {
+    background-color: #0056b3;
+}
+
+#ban-upadate .highlight {
+    color: #ff3b3b;
+    font-weight: bold;
+}
+
+
+
 .post img { max-width: 100%; }
 .loading {
 text-align: center; 
