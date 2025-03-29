@@ -633,7 +633,7 @@ let contentContainer = document.getElementById("trinh-xem");
 // Hàm lấy nội dung từ GitHub API
 async function fetchContentGithub() {
     contentContainer.innerHTML = ""; // Xóa nội dung cũ trước khi cập nhật
-    let selectedType = document.querySelector('input[name="type"]:checked').value;
+    let selectedType = document.querySelector('input[name="type"]:checked').value + "Github"; // Thêm hậu tố Github
 
     let apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/main?recursive=1`;
 
@@ -646,7 +646,8 @@ async function fetchContentGithub() {
             if (file.path.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileTypeGithub = "imageGithub";
             if (file.path.match(/\.(mp4|webm|ogg)$/)) fileTypeGithub = "videoGithub";
 
-            if (selectedType === "all" || selectedType === fileTypeGithub) {
+            // So sánh chính xác với hậu tố Github
+            if (selectedType === "allGithub" || selectedType === fileTypeGithub) {
                 let fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
 
                 // Tạo link để mở tab mới
