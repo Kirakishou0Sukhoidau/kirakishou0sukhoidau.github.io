@@ -682,6 +682,121 @@ document.querySelectorAll('input[name="type"]').forEach(radio => {
 
 
 
+//ban-va
+
+        let allCommits = [];
+        let currentPage = 1;
+        const commitsPerPage = 10;
+
+        async function fetchAllCommits(owner, repo) {
+            let page = 1;
+            let commits = [];
+            let hasMoreCommits = true;
+
+            while (hasMoreCommits) {
+                const url = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100&page=${page}`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (data.length > 0) {
+                        commits = commits.concat(data);
+                        page++;
+                    } else {
+                        hasMoreCommits = false;
+                    }
+                } catch (error) {
+                    console.error("Lỗi tải commit:", error);
+                    hasMoreCommits = false;
+                }
+            }
+            return commits;
+        }
+
+        async function loadGitHubCommits() {
+            const owner = "Kirakishou0sukhoidau"; // Thay bằng GitHub username
+            const repo = "kirakishou0sukhoidau.github.io"; // Thay bằng tên repository
+            const logList = document.getElementById("log-list");
+            const authorFilter = document.getElementById("authorFilter");
+
+            allCommits = await fetchAllCommits(owner, repo);
+
+            const authors = new Set();
+            allCommits.forEach(commit => authors.add(commit.commit.author.name));
+
+            authors.forEach(author => {
+                const option = document.createElement("option");
+                option.value = author;
+                option.textContent = author;
+                authorFilter.appendChild(option);
+            });
+
+            filterCommits();
+        }
+
+        function filterCommits() {
+            const searchKeyword = document.getElementById("searchInput").value.toLowerCase();
+            const selectedAuthor = document.getElementById("authorFilter").value;
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+            const sortOrder = document.getElementById("sortOrder").value;
+            const logList = document.getElementById("log-list");
+
+            let filteredCommits = allCommits.filter(commit => {
+                const author = commit.commit.author.name;
+                const message = commit.commit.message.toLowerCase();
+                const date = commit.commit.author.date;
+
+                return (
+                    (searchKeyword === "" || message.includes(searchKeyword)) &&
+                    (selectedAuthor === "" || author === selectedAuthor) &&
+                    (startDate === "" || new Date(date) >= new Date(startDate)) &&
+                    (endDate === "" || new Date(date) <= new Date(endDate))
+                );
+            });
+
+            if (sortOrder === "oldest") {
+                filteredCommits.reverse();
+            }
+
+            allFilteredCommits = filteredCommits;
+            currentPage = 1;
+            renderCommits();
+        }
+
+        function renderCommits() {
+            const logList = document.getElementById("log-list");
+            logList.innerHTML = "";
+
+            const start = (currentPage - 1) * commitsPerPage;
+            const end = start + commitsPerPage;
+
+            allFilteredCommits.slice(start, end).forEach(commit => {
+                const li = document.createElement("li");
+                li.classList.add("commit-item");
+                li.innerHTML = `<strong>${commit.commit.author.name}</strong> (${commit.commit.author.date}): 
+                ${commit.commit.message.replace(/(fix|bug|update|error)/gi, '<span class="highlight">$1</span>')}`;
+                li.onclick = () => window.open(commit.html_url, "_blank");
+                logList.appendChild(li);
+            });
+
+            updatePaginationButtons();
+        }
+
+        function updatePaginationButtons() {
+            document.getElementById("prevPage").disabled = currentPage === 1;
+            document.getElementById("nextPage").disabled = currentPage * commitsPerPage >= allFilteredCommits.length;
+            document.getElementById("pageInfo").textContent = `${currentPage}/${Math.ceil(allFilteredCommits.length / commitsPerPage)}`;
+        }
+
+        function changePage(offset) {
+            currentPage += offset;
+            renderCommits();
+        }
+
+        loadGitHubCommits();
+
+
+
 //tool-va-feeds
 document.addEventListener("DOMContentLoaded", function () {
     let tools2 = document.getElementById("tools2");
