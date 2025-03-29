@@ -623,13 +623,15 @@ modalBg.addEventListener('click', () => {
 
 
 //log-web
+//media
 
-let repoOwner = "kirakishou0sukhoidau"; // Tên GitHub của quý cô
+// 📂 mediaGithub
+let repoOwner = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
 let repoName = "kirakishou0sukhoidau.github.io";  // Tên repository
 let contentContainer = document.getElementById("trinh-xem");
 
 // Hàm lấy nội dung từ GitHub API
-async function fetchContent() {
+async function fetchContentGithub() {
     contentContainer.innerHTML = ""; // Xóa nội dung cũ trước khi cập nhật
     let selectedType = document.querySelector('input[name="type"]:checked').value;
 
@@ -640,44 +642,44 @@ async function fetchContent() {
         let data = await response.json();
 
         data.tree.forEach(file => {
-            let fileType = "";
-            if (file.path.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileType = "image";
-            if (file.path.match(/\.(mp4|webm|ogg)$/)) fileType = "video";
+            let fileTypeGithub = "";
+            if (file.path.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileTypeGithub = "imageGithub";
+            if (file.path.match(/\.(mp4|webm|ogg)$/)) fileTypeGithub = "videoGithub";
 
-            if (selectedType === "all" || selectedType === fileType) {
+            if (selectedType === "all" || selectedType === fileTypeGithub) {
                 let fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
-                
-                // Tạo link để mở tab mới
-                let link = document.createElement("a");
-                link.href = fileUrl;
-                link.target = "_blank";
-                link.title = file.path; // Hiện đường dẫn khi nhấn giữ
 
-                if (fileType === "image") {
-                    let img = document.createElement("img");
-                    img.src = fileUrl;
-                    link.appendChild(img);
-                } else if (fileType === "video") {
-                    let video = document.createElement("video");
-                    video.src = fileUrl;
-                    video.controls = true;
-                    link.appendChild(video);
+                // Tạo link để mở tab mới
+                let linkGithub = document.createElement("a");
+                linkGithub.href = fileUrl;
+                linkGithub.target = "_blank";
+                linkGithub.title = file.path;
+
+                if (fileTypeGithub === "imageGithub") {
+                    let imgGithub = document.createElement("img");
+                    imgGithub.src = fileUrl;
+                    linkGithub.appendChild(imgGithub);
+                } else if (fileTypeGithub === "videoGithub") {
+                    let videoGithub = document.createElement("video");
+                    videoGithub.src = fileUrl;
+                    videoGithub.controls = true;
+                    linkGithub.appendChild(videoGithub);
                 }
 
-                contentContainer.appendChild(link);
+                contentContainer.appendChild(linkGithub);
             }
         });
     } catch (error) {
-        console.error(`Lỗi tải dữ liệu từ repository:`, error);
+        console.error("⚠️ Lỗi tải dữ liệu từ repository:", error);
     }
 }
 
 // Tải nội dung ban đầu
-fetchContent();
+fetchContentGithub();
 
-// Lắng nghe sự kiện thay đổi radio để cập nhật nội dung hiển thị
+// Lắng nghe sự kiện thay đổi radio
 document.querySelectorAll('input[name="type"]').forEach(radio => {
-    radio.addEventListener("change", fetchContent);
+    radio.addEventListener("change", fetchContentGithub);
 });
 
 
