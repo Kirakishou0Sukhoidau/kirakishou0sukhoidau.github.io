@@ -1,0 +1,735 @@
+
+h2 {font-size: 1.5em;
+    font-weight: bold;
+ }
+header {z-index: +10;}
+
+.head{
+       color: black;
+  background: pink;
+  right: 0px;
+  display: block;
+  z-index: +5;
+}
+
+#switch-pass {
+    background-color: pink; 
+    width: max-content; 
+    margin: 0.3125em auto; 
+    padding: 0.125em; 
+    border: 1px solid black;
+}
+
+
+#thccth {display: flex;
+  flex-direction: column;
+}
+
+
+#thccth1 {
+  box-shadow: 0px 0px 0.625em #ff00f2, 0px 0px 0.625em #ff00f2 inset;
+  width: fit-content;
+  margin: 0 auto;
+  box-sizing: content-box;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ff00b7;
+  backdrop-filter: blur(0.625em);
+}
+
+
+#ipc {background: white;
+      border: 1px solid black;
+      margin: 0 auto;
+      padding: 0.625em;
+      width: max-content;
+}   
+
+nav {display: block;}
+
+html {position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      flex-basis: auto;
+      user-select: none;
+}
+
+
+body {background-image: url("../image/bgp1-1.webp");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: top center;
+      font-family: Arial;
+      font-size: 1em;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+ }
+
+#fullScreenButton {
+  bottom: 0px;
+  width: 100vw;
+  position: fixed;
+  text-align: center;
+  cursor: pointer;
+  color: #F9B6FF;
+  pointer-events: none;
+}
+
+
+#fullScreenButton i {
+  pointer-events: auto;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+
+
+#rdcc {
+    margin: 0 auto;
+   width: max-content;
+}
+
+#dtx {text-align: center;
+  
+  width: 100%;
+}
+
+
+
+
+ #hien-bg:active+mui-ten-len p {display: none;
+  
+}
+   #thongbao {
+            position: fixed;
+            background-color: #ddd; /* Màu tím nhạt */
+            border: 1px solid #ccc;
+            padding: 1.25em 0.625em 1.25em 0.625em;
+            width: 80%;
+            bottom: 20%;
+            right: 10%;
+            text-align: center;
+            z-index: +2;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        #thongbao > .tmw {
+            margin-bottom: 5%;
+           pointer-events: auto;
+        }
+        
+        #thongbao button {
+            margin: 0 0.625em;
+            padding: 0.3125em 0.625em;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: #007bff;
+           z-index: +2;
+            color: #fff;
+        }
+        
+        #thongbao button:hover {
+            background-color: #0069d9;
+        }
+ 
+
+    #backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: +10;
+    }
+
+ 
+  h1 {color: rgb(0,0,0);
+   /* margin-top: 7%;*/
+    /*margin-bottom: 9px;*/
+    width: 100%;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 0.1875em;
+  }
+
+.video {
+  width: 100%;
+  height: 95%
+}
+.video .vo {height: 100%;}
+
+
+.video video, .video img {border: 1px solid black;
+  
+}
+
+#loadi {align-items: right;
+  color: white;
+  font-size: 1.2em
+}
+#load {
+  
+  width: 0vh;
+  left: 0px;
+  bottom: 0px;
+  height: 2px;
+
+  background-color: white;
+  animation: load 120s linear infinite;
+}
+
+@keyframes load {
+   to {opacity: 1;
+      width: 100vh;
+    }
+}
+
+
+.chu-chay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+      /* margin-top: 100px;*/
+       text-align: center;
+  font-family: Pinyon Script;
+}
+
+.chu-chay span {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 4px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.chu-chay span:first-child {
+  opacity: 1;
+}
+
+/* Keyframes cho hiệu ứng delay */
+
+@keyframes delay-cycle {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Áp dụng hiệu ứng delay */
+
+.chu-chay span {
+  animation: delay-cycle 7s infinite ease-in-out;
+}
+
+
+
+
+
+
+h1, span, p {pointer-events: none;}
+
+  
+ .hatm {margin: 0 auto;
+   padding: 0.1875em 8px 0.1875em 8px;
+      background-color: rgba(230, 230, 250, 0.5);
+    border: 1px solid black;
+        font-family: Arial;
+   width: max-content;
+ }
+  .h11 {color: rgb(0,0,0);
+     background-color: rgba(230, 230, 250, 0.5);
+    width: max-content;
+    border: 1px solid black;
+    text-align: center;
+    padding: 0.125em 0.125em 0em 0.125em;
+    margin: 0 auto;
+    font-family: Pinyon Script;
+    }
+
+  
+
+
+      #reset {position: top right;}
+
+
+  #toolg {/*margin-left: -65px;*/
+         text-align: left;
+  }
+
+
+     #toggle-tools, #toggle-tools2,
+    #toggle-tools3, #toggle-delta
+  {
+    width: 26px;
+    height: 26px;
+    border: 1px solid black;
+    margin: 1.2px;
+    transition: all 0.3s ease-in-out;
+    }
+
+
+  .ti {background-color: white;
+      border: 1px black;
+  }
+
+
+  #submit-search,
+ #form-search, .search, .search2,
+ #form-quet, #surl{
+   text-align: center;
+   position: relative;
+ }
+
+.search2, .search, #url {margin-top: 5px;
+  position: relative;
+}
+
+
+input::after {
+  content: attr(value);
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+input:after:first-child {
+  color: red;
+}
+
+
+       input {
+      color: white;
+      background-color: black;
+         padding: 0.125em;
+         text-align: center; 
+         margin-bottom: 2px;
+         position: center;
+         position: relative;
+         border: 1.5px solid rgb(135, 206, 250);
+         outline: none;
+         border-radius: 5px;
+       }
+ 
+
+
+   
+    #reset {color: blueviolet;
+            background: lavender;
+            border: 2px solid black;
+         text-align: center;
+         align-items: center;
+        height: 22px;
+      transition: all 0.2s ease-in-out;
+    }
+      
+    .img {margin: 0 auto ; height: 3cm; display:block;}
+
+
+form button {
+transition: all 0s ease-in-out;
+}
+
+  button {width: max-content;
+    background-color: pink;
+    padding: 0 0.125em;
+    border: 2px solid black;
+    
+  }
+
+ select {width: max-content;
+    background-color: pink;
+    padding: 0 0.125em;
+    text-align: center;
+    border: 1px solid black;
+  }
+  
+    
+     
+  
+    h4.bgb-tw {
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      width: 97%;
+      display: block;
+     padding: 0.3125em 0.625em;
+      border-radius: 5px;
+      margin: 5px;
+      cursor: pointer;
+      position: relative;
+      transition: 1s ease-in-out;
+       }
+
+   
+
+     ul.nnp {
+      display: none;
+      margin-bottom: 10px;
+      padding: 0.3125em 0.625em;
+      border: 1px solid #ccc;
+       background: palevioletred;
+      border-radius: 5px;
+       width: 97%;
+        transition-delay: 0.3sec;
+    }
+
+    .nnp li {
+      margin-bottom: 5px;
+      
+      width: 100%;
+       height: auto;
+    }
+
+
+    .nnp li a {
+      background-color: palevioletred;
+      color: wheat;
+      text-decoration: none;
+      display: block;
+    }
+
+
+
+
+#app-android {
+}
+
+.h-app {
+  background-color: blueviolet;
+}
+
+.app-android .appmot {
+     display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name-app {
+  background-color: white;
+  font-weight: bold;
+  color: black;
+  margin: 0px 0.625em 0px 0.625em;
+  width: 6.25em;
+  text-align: center;
+  pointer-events: none;
+}
+
+
+.app-android .appmott {
+  height: 3.4375em;
+  width: 3.4375em;
+  margin: 0.3125em;
+  border: 0.28125em solid white;
+  border-radius: 30%;
+  background-color: white;
+  pointer-events: none;
+  transition: all 0.1s ease-in-out;
+}
+
+
+
+
+
+
+
+.app-android {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+ b {font-weight: bold;}
+
+   .Hello {
+     color: violet; 
+       
+   /*  text-align: center;*/
+     /*margin: 0 auto;*/
+  /*   ;*/
+     
+   }
+
+ #ngay, #gio {
+   background-color: black; 
+   margin: 0 auto; 
+   width: max-content; 
+   color: white;
+ }
+
+
+     h2.h2-p {margin:0 auto; 
+       text-align: center; 
+       color: white; 
+       background-color: black; 
+       width: 82%;
+       margin-bottom: 5px;
+       margin-top: 5px;
+     }
+
+
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  display: none;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  padding: 0.625em;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#back-to-top:hover {
+  overflow: 0.5;
+}
+
+#back-to-top.show {
+  display: block;
+}
+
+
+ 
+
+  .mui-ten-xuong {
+    text-align: center;
+    padding: 0em 0.3125em 0em 0.3125em;
+    overflow: hidden;
+    margin: 0 auto;
+    width: max-content;
+    height: 20px;
+    background-color: pink;
+    border: 1px solid black;
+
+ }
+
+
+.mui-ten-cheo {font-weight: bold; 
+  font-site: 1.2em; 
+  text-align: center;}
+
+/*
+
+/*.mui-ten-len::after {
+  content: "♥️";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+}*/
+
+
+  .mui-ten-len {
+   background-image: url("../image/mtlp.webp");
+    opacity: 1;
+    background-size: 100% 100%;
+   bottom: 0px;
+   right: 0px;
+  /*  align-items: center;*/
+   position: fixed;
+    height: 50px;
+    border-radius: 50%;
+    width: 50px;
+    padding: 0.625em;
+    z-index: 3;
+    border: 1px solid black;
+    transition: all 0.3s ease-in-out;
+ }
+ 
+  .ul-bq {background-image: url("../image/npp.webp");
+    background-repeat: no repeat;
+    background-size: 100% 100%;
+              padding: 0.625em;
+              bottom: 1%;
+              height: 98%;
+              width: 100%;
+          /*    pointer-events: none;*/
+              border: 1px solid aqua;
+               position: fixed;
+              list-style: none;
+              text-align: left;
+              overflow-y: scroll;
+         }
+
+.pul-bq {color: azure;
+        }
+
+ #app {margin: 5px;}
+ #app>a>img {width: 50px;}
+
+ 
+    .hidden {display: none;
+    }
+  
+
+
+  #footer>footer>#bqk {text-align: center;
+        padding: 0.125em;
+        right: 15%;
+         bottom: 15%;
+    position: absolute;
+  }
+ 
+ #bqk a{pointer-events: auto;}
+
+ 
+  #footer>footer {
+  position: fixed;
+  background-color: rgba(255, 204, 204, 0.8);
+  center: 0;      
+  bottom: 0;
+  left: 0;
+  color: black;
+  width: 93%;
+    height: 1.875em;
+    align-items: center;
+  pointer-events: none;      
+}
+
+#iptq {margin-left: 3px;}
+ 
+   .top #home {position: fixed;
+         right: 10px;
+          top: 5px;
+         height: 1.875em;
+        width: 1.875em;
+     padding: 0.125em;
+        
+   }
+ 
+
+   #home a .resett {position: fixed;
+       top: 5px;
+      right: 5px;
+      height: 1.875em;
+     z-index: 7;
+   }
+  .top {
+      position: relative;
+     /* background: rgba(0,0,0,0.3);*/
+      padding: 0.0625em;
+      margin: 3px;
+      height: 2.4375em;
+}
+ .top .thead li a{list-style: none;
+   border-bottom: 1px solid white;
+   height: min-content;
+   text-decoration-line: none;
+ }
+ul {list-style: none;}
+
+ .thead {display: flex;} /*the ul 1*/
+
+.top ul li {/*float: left;*/
+  padding: 0.3125em;
+  
+}
+  .top .thead li a {
+    text-decoration: none;}
+.top .thead li a img {height: 1.875em;}
+ 
+
+.head-1 {position: fixed;}
+
+
+
+
+  #lb {position: absolute;
+      left: 25%;
+      top: 5%;
+      pointer-events: none;
+      transition: all 0.3s ease-in-out;
+      color: rgba(255,255,255,0.3);
+} 
+
+
+ #lb2 {position: absolute;
+       left: 25%;
+       top: 5%;
+       pointer-events: none;
+       transition: all 0.3s ease-in-out;
+       color: rgba(255,255,255,0.3);
+} 
+
+
+
+
+
+
+
+ .search #input-search:focus {
+   border: 1px solid purple;
+ }
+ .search2 #input-quet:focus {
+   border: 1px solid red;
+   
+ }
+
+
+
+ .search #input-search:focus+#lb, .search #input-search:valid+#lb {
+                   
+                   font-size: 1rem;
+                   color: rgb(255, 0, 255); 
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   background: black;
+                   width: max-content;
+                   left: 23%;
+                   height: 23px;
+                   padding: 0.125em 0.3125em 0.125em 0.3125em;
+                   margin-top: -30px;
+                   border: 1px solid white;
+                   
+ }
+
+
+       
+   
+
+
+.search2 #input-quet:focus+#lb2, .search2 #input-quet:valid+#lb2{ 
+                   font-size: 1rem;
+                   color: rgb(255, 192, 0); 
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   background: black;
+                   width: max-content;
+                   left: 23%;
+                   height: 23px;
+                   padding: 0.125em 0.3125em 0.125em 0.3125em;
+                   margin-top: -30px;
+                   border: 1px solid white; 
+}

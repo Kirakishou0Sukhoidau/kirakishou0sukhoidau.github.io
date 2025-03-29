@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Press Start 2P", serif;    
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    flex-direction: column;
+    overflow: hidden;  /* Ẩn thanh cuộn nếu có */
+}
+
+.game-container {
+    text-align: center;
+}
+
+.game-screen {
+    margin-bottom: 20px;
+}
+
+#gameCanvas {
+    width: 90vw;  /* Điều chỉnh theo 90% chiều rộng của màn hình */
+    height: 90vw; /* Điều chỉnh theo 90% chiều rộng của màn hình */
+    max-width: 400px;  /* Giới hạn tối đa chiều rộng canvas */
+    max-height: 400px; /* Giới hạn tối đa chiều cao canvas */
+    border: 1px solid white;
+    background-color: #000;
+    display: block;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dpad button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.dpad-middle {
+    display: flex;
+    justify-content: center;
+}
+
+button:focus {
+    outline: none;
+}
+
+.score-board {
+    margin-bottom: 10px;
+    color: black;
+}
+
+#score {
+    font-size: 16px;
+    color: white;
+    border-bottom: 1px solid white;
+    width: max-content;
+    margin: 0 auto;
+}
+
+/* Bảng Game Over */
+.game-over-screen {
+    position: fixed;
+    color: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;  /* Ẩn bảng khi chưa game over */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game-over-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#restart {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#footer {
+  font-size: 5px;
+}

@@ -1,0 +1,44 @@
+/*{margin: 0;
+  padding: 0;
+}*/
+#dkvadv {max-width: 960px;
+  margin: 0 auto;
+}
+.td {display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 3px solid black;
+}
+.td li {margin-right: 10px;}
+.td li a{display: block;
+   padding: 6px 10px;
+  text-decoration: none;
+  position: relative;
+}
+.td li a:after {content: "";
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  bottom: -3px;
+  background: blue;
+}
+ h2 {font-size: 1.5em;
+   font-weight: bold;
+ }
+.td li::activeactive a.after, .td li::hover a::after {background: white;}
+
+.vb {padding: 20px 0px;
+  
+}
+
+.tabs .vb div {
+  display: none;
+}
+
+.tabs .vb div.active {
+  display: block;
+}
+
+/*#dk {display: block;}*/

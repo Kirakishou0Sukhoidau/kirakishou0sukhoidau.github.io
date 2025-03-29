@@ -1,0 +1,48 @@
+.ahdy {
+  height: 5cm;
+  margin: 3px;
+  
+}
+
+.luu-y-card {
+  text-align: justify;
+  color: blueviolet;
+}
+
+.ohdy {
+  padding: 1px;
+  margin: 5px auto;
+  text-align: center;
+  border: 1px solid black;
+  background-color: pink;
+}
+
+.vbhdy {
+  text-align: justify;
+}
+
+.cach-summon {
+  background: greenyellow;
+  text-align: left;
+}
+
+.vsum {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.hien-video {
+  width: max-content;
+  left: 5px;
+  margin: 2px;
+  padding: 1px;
+  border: 1px solid black;
+}
+
+footer, h2 {
+  text-align: center;
+}
+

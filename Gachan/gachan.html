@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kirakishou">
+    <meta name="copyright" content="© 2024 Kirakishou">
+  <link rel="stylesheet" href="../reset.css">
+    <title>Gacha</title>
+</head>
+<style>
+*{margin: 5px;}
+html {
+  background-color: bluesky;
+  max-width: 1080px;
+}
+body {text-align: center;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+}
+footer {bottom: 0px;
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  font-weight: bold;
+}
+input {width: 30%;
+  text-align: center;
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 2px;
+}
+button {border: 1px solid black;
+      padding: 2px;
+      width: 20%;
+     margin-top: 10px;
+}
+</style>
+
+<body>
+  <!--div>
+    <a style="float: left;" href="../Home/home.html">Trang chủ</a>
+</div-->
+  <div id="qs">
+  <br/>
+    <h1 style="margin-top: 10%;">Quay số</h1>
+    <p>Chọn phạm vi:</p>
+  <p><b>Từ</b></p>
+    <input type="number" id="min" placeholder="Từ">
+  
+  <p><b>Đến</b></p>
+    <input type="number" id="max" placeholder="Đến">
+  <br/>
+    <button id="quay">Quay</button>
+    <button id="resetq" type="reset">Xóa số</button>
+</div>
+  <br>
+  <div id="gct">
+        <h1>Gacha!</h1>
+    <p>Nhập dữ liệu để gacha:</p>
+    <div id="inputs">
+      <button type="button" id="add-input">Thêm ô</button>
+      <button id="reset" type="reset">Xóa chữ</button>
+     <button id="delete">Xóa ô</button>
+      <br/>
+      <br/>
+        <input type="text" name="data" placeholder="Nhập dữ liệu">
+            </div>
+ 
+    <button type="button" id="gacha">Gacha!</button>
+    <br>
+    <br>
+  </div>
+  <div id="trac-nghiem">
+    <h1>Roll đáp án trắc nghiệm</h1>
+        <button id="abcd">Roll</button>
+  </div>
+
+  <footer>Bản quyền &copy Kirakishou 2024</footer>
+    <script src="gachan.js"></script>
+</body>
+</html>

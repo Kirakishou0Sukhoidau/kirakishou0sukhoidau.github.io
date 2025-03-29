@@ -1,0 +1,25 @@
+User-Agent: *
+
+Disallow: /image/
+Disallow: /logo/
+Disallow: /Home/
+Disallow: /lgc.ico
+Disallow: /xtracss/
+Disallow: /hside/
+Disallow: /logo/
+Disallow: /video/
+Disallow: /Home/Kirakishou.html
+Disallow: /Home/Home.css
+Disallow: /Home/Home.js
+Disallow: /Home/mediaH.css
+Disallow: /Home/reset.css
+Disallow: /hside/hside.html
+Disallow: /hside/hside.css
+Disallow: /hside/hside.js
+Disallow: /hside/
+Disallow: /xtracss/
+Disallow: /trang-chu/Home.css
+Disallow: /trang-chu/Home.js
+
+
+Sitemap: /sitemap.xml

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Nhân bản ký tự</title>
+    <link rel="stylesheet" href="../Home/reset.css">
+  <link rel="icon" href="../lgc.ico" type="image/x-icon">
+  <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+</head>
+
+<style>
+
+          html {
+           margin: 0 auto;
+           background-color: pink;
+           background-size: cover;
+           overflow: hidden;
+      }
+        #ket-qua {
+            display: none;
+        }
+        #hop-sao-chep:hover #ket-qua {
+            display: block;
+        }
+ #hop-sao-chep {width: 100%;
+         bottom: 0px;
+         height: 300px;
+         
+       
+  }
+
+button, input {border: 1px solid black; margin: 2.5px; padding: 2px;}
+#noi-dung-sao-chep {width: 100%;
+         height: 100%;
+         border: 1px solid black;
+  }
+
+  footer {bottom: 0px;
+          text-align: center;
+          position: fixed;
+          width: 100%;
+          left: 0px;
+          background: black;
+          color: white;
+  }
+ body { margin: 5px;
+   padding: 1px;
+ 
+ }
+    </style>
+<header>
+   <a href="https://kirakishou0sukhoidau.github.io/Nhung_cuon_sach_cua_Kirakishou/trang-chu/home.html"><i class="fa-solid fa-house-chimney"></i></a>
+<br>
+  <div style="right: 0px; padding: 1px; margin: 5px">
+ 
+     
+    <h1 style="text-align: center">Sao chép văn bản</h1>
+  </div>
+</header>
+ <body>
+    <br/>
+    <label>Nhập dữ liệu:</label>
+  <input type="text" id="data-input">
+  <br/><br/>
+    <label for="so-lan">Số lần lặp lại:</label>
+    <input type="number" id="so-lan" value="10">
+    <br>
+    <br>
+    <h2>Loại kết quả:</h2>
+    <input type="radio" id="khong-danh-sach" name="loai-ket-qua" value="khong-danh-sach" checked>
+    <label for="khong-danh-sach">Không đánh số</label>
+     <input type="radio" id="danh-sach" name="loai-ket-qua" value="danh-sach">
+    <label for="danh-sach">Dạng danh sách</label>
+
+    <br>
+    <br>
+    <button id="copy-button" onclick="lapLaiDuLieu()">Nhân bản</button>
+    <button id="reset" type="reset">Xóa</button>
+
+    <br>
+    <br>
+    <h2 id="ket-qua">Kết quả:</h2>
+    <div id="hop-sao-chep">
+        <button type="button" onclick="saoChep()">Sao chép</button> <br/><br/>
+        <textarea id="noi-dung-sao-chep" style="padding: 2px;" readonly></textarea>
+    </div>
+  
+    <script>
+            function lapLaiDuLieu() {
+            let data = document.getElementById("data-input").value;
+            let soLan = parseInt(document.getElementById("so-lan").value);
+            let loaiKetQua = document.querySelector('input[name="loai-ket-qua"]:checked').value;
+            let ketQua = "";
+            if (loaiKetQua === "danh-sach") {
+                for (let i = 1; i <= soLan; i++) {
+                    ketQua += i + ". " + data + "\n";
+                }
+            } else {
+                for (let i = 0; i < soLan; i++) {
+                    ketQua += data + "\n";
+                }
+            }
+            document.getElementById("ket-qua").innerHTML = ketQua;
+            document.getElementById("noi-dung-sao-chep").value = ketQua;
+        }
+        function saoChep() {
+            let noiDungSaoChep = document.getElementById("noi-dung-sao-chep");
+            noiDungSaoChep.select();
+            document.execCommand("copy");
+            alert("Đã sao chép nội dung!");
+        }
+  
+  function reset() {
+  // Lấy element input
+  let dataInput = document.getElementById("data-input");
+
+  // Xóa giá trị của element input
+  dataInput.value = "";
+
+  // Cập nhật lại kết quả
+  lapLaiDuLieu();
+}
+
+document.getElementById("reset").addEventListener("click", reset);
+
+    </script>
+</body>
+  <br/>
+  <footer> Bản quyền &copy; Kirakishou 2024</footer>
+ 
+</html>

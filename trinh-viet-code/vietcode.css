@@ -1,0 +1,69 @@
+a {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+
+#viet-code {
+ width: 95%;
+  margin: 2.5%;
+}
+
+#html, #css, #js {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+
+#urlInput {
+  border: 1px solid black;
+}
+
+
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+#giao-dien {
+  scroll-y: auto;
+  height: 95vh;
+  width: 95vw;
+  margin: 2.5%;
+  border: 1px solid black;
+}
+
+
+#reset, #reset2 {
+  color: blueviolet;
+  border: 2px solid blue;
+}
+
+
+#screen-size-selector {
+  background-color: pink;
+  
+  z-index: 2;
+  
+}
+
+
+
+
+#screen-size-selector input[name="screen-size"] {
+  transform: translateY(12%);
+}
+
+#customSize {
+  width: 100px;
+  border: 1px solid black;
+}

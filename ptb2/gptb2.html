@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Home/reset.css">
+    <title>Máy tính cầm tay</title>
+    <link rel="stylesheet" href="gptb2.css">
+</head>
+<body>
+  
+  <div id="tpt">
+    <div class="pt">
+    <h1>Tính phần trăm</h1>
+    <input type="number" id="phanTram"> 
+    <span>% của</span>
+    <input type="number" id="so">
+    </div> <br>
+    <button type="button "onclick="tinh()">Tính</button>
+    <button id="resetpt" type="reset">Xóa hết</button>
+  <p id="ketQuapt"></p>
+    
+  </div>
+  
+  <div id="gptb2">
+    <h1>Giải phương trình bậc 2</h1>
+    <form onsubmit="return false;">
+      <div class="gp2">
+        <label for="a">Hệ số a:</label>
+        <input type="number" id="a" name="a">
+        
+        <label for="b">Hệ số b:</label>
+        <input type="number" id="b" name="b">
+        
+        <label for="c">Hệ số c:</label>
+        <input type="number" id="c" name="c">
+        <span>=</span>
+      </div>
+        <br>
+        <br>
+        <button onclick="giaiPhuongTrinh()">Giải ptb2</button>
+        <button id="reset" type="reset">Xóa hết</button>
+    </form>
+    <br>
+    <div id="ketqua"></div>
+  </div>
+  
+  
+  <!--div id="gptb3">
+    <h1>Tìm ẩn x của phương trình bậc 3</h1>
+    <form action="javascript:void()" onsubmit="giaiPTB3()">
+        <label for="a-ptb3">Hệ số a:</label>
+        <input type="number" id="a-ptb3" name="a" required>
+        <br>
+        <label for="b-ptb3">Hệ số b:</label>
+        <input type="number" id="b-ptb3" name="b" required>
+        <br>
+        <label for="c-ptb3">Hệ số c:</label>
+        <input type="number" id="c-ptb3" name="c" required>
+        <br>
+        <label for="d-ptb3">Hệ số d:</label>
+        <input type="number" id="d-ptb3" name="d" required>
+        <br>
+        <br>
+        <button type="submit">Giải</button>
+    </form>
+    <br>
+    <div id="ketqua-ptb3"></div>
+  </div-->
+
+  
+  <div id="tlk">
+      <h1>Tính lãi kép</h1>
+  <form action="javascript:void(0);" onsubmit="tinhLaiKep()">
+    <div class="lk">
+    <label for="soTienGoc">Số tiền gốc:</label>
+    <input type="number" id="soTienGoc" name="soTienGoc" required>
+    
+    <label for="laiSuat">Lãi suất (%):</label>
+    <input type="number" id="laiSuat" name="laiSuat" required>
+    
+    <label for="soNam">Số đợt:</label>
+    <input type="number" id="soNam" name="soNam" required>
+    </div>
+    <br>
+    <br>
+    <button type="submit">Tính</button>
+    <button id="resetl" type="reset">Xóa hết</button>
+  </form>
+  <br>
+  <p id="Dapso"></p>
+  </div>
+  
+  <footer style="background: rgba(0,0,0,0.5); color: white; font-weight: bold; bottom: 0px; position: absolute; padding: 5px; display: block; width: 100%; left: 0px; right: 0px; text-align: center;">  
+    Bản quyền &copy Kirakishou 2024
+  </footer>
+  <script src="gptb2.js"></script>
+</body>
+</html>

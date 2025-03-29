@@ -1,0 +1,209 @@
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+  html {
+    margin: 5px;
+    text-align: center;
+  }
+ h1 {top: 0px;}
+  #home a {right: 5px;
+           top: 5px;
+    display: block;
+   
+  }
+ .an-hien {
+  position: static;
+  width: max-content;
+  bottom: 5px;
+  padding: 1px;
+  transition: all 0.5s ease-in-out;
+ }
+
+
+
+ #ipc {
+   width: 30%;
+ }
+
+  
+  #submit-linkType {border: 2px solid black;
+  width: 12%;}
+ /* #thccth, h4, ul, li a{ flex-direction: row;
+    text-align: center;
+  }*/
+  
+    #lb {position: absolute;
+      top:6.5%;
+      left: 37%;
+      pointer-events: none;
+      transition: all 0.3s ease-in-out;
+      color: rgba(255,255,255,0.3);
+} 
+
+
+ #lb2 {position: absolute;
+      margin-top: 0%;
+      margin-left: 13%;
+  
+      pointer-events: none;
+      transition: all 0.3s ease-in-out;
+      color: rgba(255,255,255,0.3);
+} 
+.top>#home {position: fixed;
+            right: 0px;
+            top: 0px;}
+
+
+ .search #input-search:focus+#lb, .search #input-search:valid+#lb {
+                   
+                   font-size: 1rem;
+                   color: rgb(255, 0, 255); 
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   background: black;
+                   width: auto;
+                   left: 17%;
+                   height: 23px;
+                   padding: 2px;
+                   top: 29px;
+                   border: 1px solid white;
+                   
+ }
+  
+  
+   
+
+
+.search2 #input-quet:focus+#lb2, .search2 #input-quet:valid+#lb2{ 
+                   font-size: 1rem;
+                   color: rgb(255, 192, 0); 
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   background: black;
+                   width: auto;
+                   margin-left: -6%;
+                   height: 23px;
+                   padding: 2px;
+                   top: 29.5px;
+                   border: 1px solid white;
+}
+   
+ }
+
+ @media (min-width: 64em) {
+          html {
+    margin: 5px;
+    text-align: center;
+       flex-direction: column;
+       justify-items: center;
+       justify-content: center;
+  }
+   
+    .an-hien {
+  position: static;
+  width: max-content;
+  bottom: 5px;
+  padding: 1px;
+  transition: all 0.5s ease-in-out;
+ }
+   
+ h1 {top: 0px;}
+  #home a {right: 5px;
+           top: 5px;
+    display: block;
+   
+  }
+  
+
+ #ipc {
+   width: 30%;
+ } 
+
+
+
+  #submit-linkType {border: 2px solid black;
+  width: 12%;}
+ /* #thccth, h4, ul, li a{ flex-direction: row;
+    text-align: center;
+  }*/
+  
+
+
+  #lb { 
+    position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+       pointer-events: none;
+      transition: all 0.3s ease-in-out;
+      color: rgba(255,255,255,0.3);
+} 
+
+
+ #lb2 {   
+   position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+       pointer-events: none;
+      transition: all 0.3s ease-in-out;
+      color: rgba(255,255,255,0.3);
+}
+
+
+
+   body {
+     max-width: 60em;
+     text-align: center;
+     margin: 0 auto;
+   }
+
+
+
+
+.top>#home {position: fixed;
+            right: 0px;
+            top: 0px;}
+
+
+ .search #input-search:focus+#lb, .search #input-search:valid+#lb {
+                   
+                   font-size: 1rem;
+                   color: rgb(255, 0, 255); 
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   background: black;
+                   width: auto;
+                   left: 17%;
+                   height: 23px;
+                   padding: 2px;
+                   top: 29px;
+                   border: 1px solid white;
+                   
+ }
+  
+  
+   
+
+
+.search2 #input-quet:focus+#lb2, .search2 #input-quet:valid+#lb2{ 
+                   font-size: 1rem;
+                   color: rgb(255, 192, 0); 
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   font-weight: bold;
+                   /* margin-left: -10px; left: 5px;*/
+                   background: black;
+                   width: auto;
+                   margin-left: -6%;
+                   height: 23px;
+                   padding: 2px;
+                   top: 29.5px;
+                   border: 1px solid white;
+}
+
+  #app-android {
+    display: none;
+  }
+ }
+
