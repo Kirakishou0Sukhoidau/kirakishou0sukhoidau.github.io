@@ -684,116 +684,119 @@ document.querySelectorAll('input[name="type"]').forEach(radio => {
 
 //ban-va
 
- let allCommitsLogGithub = [];
-let currentPageLogGithub = 1;
-const commitsPerPageLogGithub = 10;
+// 📂 logGithub
+let allCommitsGithub = [];
+let currentPageGithub = 1;
+const commitsPerPageGithub = 10;
 
-async function fetchAllCommitsLogGithub(owner, repo) {
-    let pageLogGithub = 1;
-    let commitsLogGithub = [];
-    let hasMoreCommitsLogGithub = true;
+async function fetchAllCommitsGithub(owner, repo) {
+    let pageGithub = 1;
+    let commitsGithub = [];
+    let hasMoreCommitsGithub = true;
 
-    while (hasMoreCommitsLogGithub) {
-        const urlLogGithub = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100&page=${pageLogGithub}`;
+    while (hasMoreCommitsGithub) {
+        const url = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100&page=${pageGithub}`;
         try {
-            const response = await fetch(urlLogGithub);
+            const response = await fetch(url);
             const data = await response.json();
             if (data.length > 0) {
-                commitsLogGithub = commitsLogGithub.concat(data);
-                pageLogGithub++;
+                commitsGithub = commitsGithub.concat(data);
+                pageGithub++;
             } else {
-                hasMoreCommitsLogGithub = false;
+                hasMoreCommitsGithub = false;
             }
         } catch (error) {
-            console.error("Lỗi tải commit logGithub:", error);
-            hasMoreCommitsLogGithub = false;
+            console.error("⚠️ Lỗi tải commit:", error);
+            hasMoreCommitsGithub = false;
         }
     }
-    return commitsLogGithub;
+    return commitsGithub;
 }
 
-async function loadGitHubCommitsLogGithub() {
-    const ownerLogGithub = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
-    const repoLogGithub = "kirakishou0sukhoidau.github.io"; // Tên repository
-    const logListLogGithub = document.getElementById("log-list-logGithub");
-    const authorFilterLogGithub = document.getElementById("authorFilterLogGithub");
+async function loadGitHubCommitsLog() {
+    const owner = "Kirakishou0sukhoidau"; // GitHub username
+    const repo = "kirakishou0sukhoidau.github.io"; // Tên repository
+    const logList = document.getElementById("log-list");
+    const authorFilter = document.getElementById("authorFilter");
 
-    allCommitsLogGithub = await fetchAllCommitsLogGithub(ownerLogGithub, repoLogGithub);
+    allCommitsGithub = await fetchAllCommitsGithub(owner, repo);
 
-    const authorsLogGithub = new Set();
-    allCommitsLogGithub.forEach(commit => authorsLogGithub.add(commit.commit.author.name));
+    const authorsGithub = new Set();
+    allCommitsGithub.forEach(commit => authorsGithub.add(commit.commit.author.name));
 
-    authorsLogGithub.forEach(author => {
-        const optionLogGithub = document.createElement("option");
-        optionLogGithub.value = author;
-        optionLogGithub.textContent = author;
-        authorFilterLogGithub.appendChild(optionLogGithub);
+    authorsGithub.forEach(author => {
+        const optionGithub = document.createElement("option");
+        optionGithub.value = author;
+        optionGithub.textContent = author;
+        authorFilter.appendChild(optionGithub);
     });
 
-    filterCommitsLogGithub();
+    filterCommitsGithub();
 }
 
-function filterCommitsLogGithub() {
-    const searchKeywordLogGithub = document.getElementById("searchInputLogGithub").value.toLowerCase();
-    const selectedAuthorLogGithub = document.getElementById("authorFilterLogGithub").value;
-    const startDateLogGithub = document.getElementById("startDateLogGithub").value;
-    const endDateLogGithub = document.getElementById("endDateLogGithub").value;
-    const sortOrderLogGithub = document.getElementById("sortOrderLogGithub").value;
-    const logListLogGithub = document.getElementById("log-list-logGithub");
+function filterCommitsGithub() {
+    const searchKeyword = document.getElementById("searchInput").value.toLowerCase();
+    const selectedAuthor = document.getElementById("authorFilter").value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+    const sortOrder = document.getElementById("sortOrder").value;
+    const logList = document.getElementById("log-list");
 
-    let filteredCommitsLogGithub = allCommitsLogGithub.filter(commit => {
-        const authorLogGithub = commit.commit.author.name;
-        const messageLogGithub = commit.commit.message.toLowerCase();
-        const dateLogGithub = commit.commit.author.date;
+    let filteredCommitsGithub = allCommitsGithub.filter(commit => {
+        const author = commit.commit.author.name;
+        const message = commit.commit.message.toLowerCase();
+        const date = commit.commit.author.date;
 
         return (
-            (searchKeywordLogGithub === "" || messageLogGithub.includes(searchKeywordLogGithub)) &&
-            (selectedAuthorLogGithub === "" || authorLogGithub === selectedAuthorLogGithub) &&
-            (startDateLogGithub === "" || new Date(dateLogGithub) >= new Date(startDateLogGithub)) &&
-            (endDateLogGithub === "" || new Date(dateLogGithub) <= new Date(endDateLogGithub))
+            (searchKeyword === "" || message.includes(searchKeyword)) &&
+            (selectedAuthor === "" || author === selectedAuthor) &&
+            (startDate === "" || new Date(date) >= new Date(startDate)) &&
+            (endDate === "" || new Date(date) <= new Date(endDate))
         );
     });
 
-    if (sortOrderLogGithub === "oldest") {
-        filteredCommitsLogGithub.reverse();
+    if (sortOrder === "oldest") {
+        filteredCommitsGithub.reverse();
     }
 
-    allFilteredCommitsLogGithub = filteredCommitsLogGithub;
-    currentPageLogGithub = 1;
-    renderCommitsLogGithub();
+    allFilteredCommitsGithub = filteredCommitsGithub;
+    currentPageGithub = 1;
+    renderCommitsGithub();
 }
 
-function renderCommitsLogGithub() {
-    const logListLogGithub = document.getElementById("log-list-logGithub");
-    logListLogGithub.innerHTML = "";
+function renderCommitsGithub() {
+    const logList = document.getElementById("log-list");
+    logList.innerHTML = "";
 
-    const startLogGithub = (currentPageLogGithub - 1) * commitsPerPageLogGithub;
-    const endLogGithub = startLogGithub + commitsPerPageLogGithub;
+    const startGithub = (currentPageGithub - 1) * commitsPerPageGithub;
+    const endGithub = startGithub + commitsPerPageGithub;
 
-    allFilteredCommitsLogGithub.slice(startLogGithub, endLogGithub).forEach(commit => {
-        const liLogGithub = document.createElement("li");
-        liLogGithub.classList.add("commit-item");
-        liLogGithub.innerHTML = `<strong>${commit.commit.author.name}</strong> (${commit.commit.author.date}): 
+    allFilteredCommitsGithub.slice(startGithub, endGithub).forEach(commit => {
+        const liGithub = document.createElement("li");
+        liGithub.classList.add("commit-item");
+        liGithub.innerHTML = `<strong>${commit.commit.author.name}</strong> (${commit.commit.author.date}): 
         ${commit.commit.message.replace(/(fix|bug|update|error)/gi, '<span class="highlight">$1</span>')}`;
-        liLogGithub.onclick = () => window.open(commit.html_url, "_blank");
-        logListLogGithub.appendChild(liLogGithub);
+        liGithub.onclick = () => window.open(commit.html_url, "_blank");
+        logList.appendChild(liGithub);
     });
 
-    updatePaginationButtonsLogGithub();
+    updatePaginationButtonsGithub();
 }
 
-function updatePaginationButtonsLogGithub() {
-    document.getElementById("prevPageLogGithub").disabled = currentPageLogGithub === 1;
-    document.getElementById("nextPageLogGithub").disabled = currentPageLogGithub * commitsPerPageLogGithub >= allFilteredCommitsLogGithub.length;
-    document.getElementById("pageInfoLogGithub").textContent = `${currentPageLogGithub}/${Math.ceil(allFilteredCommitsLogGithub.length / commitsPerPageLogGithub)}`;
+function updatePaginationButtonsGithub() {
+    document.getElementById("prevPage").disabled = currentPageGithub === 1;
+    document.getElementById("nextPage").disabled = currentPageGithub * commitsPerPageGithub >= allFilteredCommitsGithub.length;
+    document.getElementById("pageInfo").textContent = `${currentPageGithub}/${Math.ceil(allFilteredCommitsGithub.length / commitsPerPageGithub)}`;
 }
 
-function changePageLogGithub(offset) {
-    currentPageLogGithub += offset;
-    renderCommitsLogGithub();
+function changePageGithub(offset) {
+    currentPageGithub += offset;
+    renderCommitsGithub();
 }
 
-loadGitHubCommitsLogGithub();
+// Khởi chạy
+loadGitHubCommitsLog();
+
 
 
 
