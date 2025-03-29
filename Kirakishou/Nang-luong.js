@@ -628,6 +628,7 @@ modalBg.addEventListener('click', () => {
 // 📂 mediaGithub
 let repoOwner = "Kirakishou0sukhoidau"; // Tên GitHub của quý cô
 let repoName = "kirakishou0sukhoidau.github.io";  // Tên repository
+
 let contentContainer = document.getElementById("trinh-xem");
 
 // Hàm lấy nội dung từ GitHub API
@@ -645,6 +646,7 @@ async function fetchContentGithub() {
             let fileTypeGithub = "";
             if (file.path.match(/\.(jpg|png|gif|jpeg|webp)$/)) fileTypeGithub = "imageGithub";
             if (file.path.match(/\.(mp4|webm|ogg)$/)) fileTypeGithub = "videoGithub";
+            if (file.path.match(/\.(mp3|wav|ogg)$/)) fileTypeGithub = "audioGithub"; // Bổ sung kiểm tra audio
 
             // So sánh chính xác với hậu tố Github
             if (selectedType === "allGithub" || selectedType === fileTypeGithub) {
@@ -659,14 +661,20 @@ async function fetchContentGithub() {
                 if (fileTypeGithub === "imageGithub") {
                     let imgGithub = document.createElement("img");
                     imgGithub.src = fileUrl;
-                    imgGithub.title = file.path; // Hiển thị đường dẫn chi tiết
+                    imgGithub.title = file.path;
                     linkGithub.appendChild(imgGithub);
                 } else if (fileTypeGithub === "videoGithub") {
                     let videoGithub = document.createElement("video");
                     videoGithub.src = fileUrl;
                     videoGithub.controls = true;
-                    videoGithub.title = file.path; // Hiển thị đường dẫn chi tiết
+                    videoGithub.title = file.path;
                     linkGithub.appendChild(videoGithub);
+                } else if (fileTypeGithub === "audioGithub") {
+                    let audioGithub = document.createElement("audio");
+                    audioGithub.src = fileUrl;
+                    audioGithub.controls = true;
+                    audioGithub.title = file.path;
+                    linkGithub.appendChild(audioGithub);
                 }
 
                 contentContainer.appendChild(linkGithub);
