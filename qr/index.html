@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quét QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+        }
+        h1 {
+            font-size: 24px;
+            color: #5f6368;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #camera-container {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+        #camera-container video {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        input[type="file"]:hover {
+            border-color: #4CAF50;
+        }
+        #ketqua-giai-ma-qr {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f5e7;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: none; /* Ẩn ban đầu */
+        }
+        #preview-qr {
+            margin-top: 20px;
+            text-align: center;
+            display: none; /* Ẩn ban đầu */
+        }
+        #preview-qr img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quét QR Code từ Camera hoặc Tải Ảnh</h1>
+
+    <!-- Nút bật/tắt camera -->
+    <button id="toggle-camera">Bật Camera</button>
+    <div id="camera-container">
+        <video id="camera" width="100%" height="auto" autoplay></video>
+    </div>
+
+    <!-- Input tải ảnh lên -->
+    <input type="file" id="file-input" accept="image/*" />
+
+    <!-- Kết quả giải mã -->
+    <div id="ketqua-giai-ma-qr"></div>
+
+    <!-- Hiển thị ảnh được vẽ lên canvas -->
+    <div id="preview-qr"></div>
+
+    <script src="jsQR.js"></script>
+    <script>
+        // Tìm các phần tử cần thiết từ DOM
+        const cameraButton = document.getElementById('toggle-camera');
+        const fileInput = document.getElementById('file-input');
+        const cameraContainer = document.getElementById('camera-container');
+        const videoElement = document.getElementById('camera');
+        const resultContainer = document.getElementById('ketqua-giai-ma-qr');
+        const previewContainer = document.getElementById('preview-qr');
+        let cameraStream = null;
+
+        // Hàm bật/tắt camera
+        function toggleCamera() {
+            if (cameraStream) {
+                // Dừng camera nếu đã bật
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+                cameraContainer.style.display = 'none';
+                cameraButton.textContent = 'Bật Camera';
+            } else {
+                // Bắt đầu camera với camera sau
+                navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' } // Chỉ định camera sau
+                })
+                .then(stream => {
+                    cameraStream = stream;
+                    videoElement.srcObject = stream;
+                    cameraContainer.style.display = 'block';
+                    cameraButton.textContent = 'Tắt Camera';
+                    scanQRCodeFromCamera();  // Bắt đầu quét mã QR từ camera
+                })
+                .catch(err => {
+                    resultContainer.textContent = "Không thể truy cập camera: " + err.message;
+                });
+            }
+        }
+
+        // Hàm quét mã QR từ camera
+        function scanQRCodeFromCamera() {
+            const context = document.createElement('canvas').getContext('2d');
+            function scan() {
+                if (cameraStream) {
+                    context.drawImage(videoElement, 0, 0, context.canvas.width, context.canvas.height);
+                    const imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+                    const code = jsQR(imageData.data, context.canvas.width, context.canvas.height);
+                    if (code) {
+                        resultContainer.textContent = code.data;  // Hiển thị kết quả giải mã
+                        cameraStream.getTracks().forEach(track => track.stop());  // Tắt camera ngay
+                        cameraStream = null;
+                        cameraContainer.style.display = 'none';
+                        cameraButton.textContent = 'Bật Camera';
+                    } else {
+                        requestAnimationFrame(scan);  // Tiếp tục quét
+                    }
+                }
+            }
+            scan();
+        }
+
+        // Hàm giải mã mã QR từ file tải lên
+        function decodeQRCodeFromImage(imageData) {
+            // Ẩn các phần kết quả và ảnh trước khi hiển thị mới
+            resultContainer.style.display = 'none';
+            previewContainer.style.display = 'none';
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            // Vẽ ảnh lên canvas
+            canvas.width = imageData.width;
+            canvas.height = imageData.height;
+            context.drawImage(imageData, 0, 0, canvas.width, canvas.height);
+
+            // Hiển thị lại ảnh từ canvas
+            const img = new Image();
+            img.src = canvas.toDataURL();  // Lấy dữ liệu từ canvas và chuyển thành Data URL
+            previewContainer.innerHTML = '';  // Xóa nội dung cũ
+            previewContainer.appendChild(img);  // Thêm ảnh vào div preview-qr
+            previewContainer.style.display = 'block';  // Hiển thị ảnh
+
+            // Lấy dữ liệu hình ảnh từ canvas
+            const canvasImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            // Đây là chỗ quan trọng: Lấy chính xác dữ liệu từ canvas và quét
+            const code = jsQR(canvasImageData.data, canvas.width, canvas.height);
+
+            if (code) {
+                resultContainer.textContent = code.data;  // Hiển thị kết quả giải mã
+                resultContainer.style.display = 'block';  // Hiển thị kết quả
+            } else {
+                resultContainer.textContent = "Không thể giải mã!";
+                resultContainer.style.display = 'block';  // Hiển thị thông báo
+            }
+        }
+
+        // Lắng nghe sự kiện khi tải ảnh từ file input
+        fileInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        decodeQRCodeFromImage(img);
+                    };
+                    img.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Lắng nghe sự kiện bật/tắt camera
+        cameraButton.addEventListener('click', toggleCamera);
+    </script>
+</body>
+</html>
